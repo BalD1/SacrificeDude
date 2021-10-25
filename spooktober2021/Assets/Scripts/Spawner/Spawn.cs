@@ -23,6 +23,7 @@ public class Spawn : MonoBehaviour
         {
             Enemy enemy = Instantiate(data.enemy, data.point.position, Quaternion.identity).GetComponentInChildren<Enemy>();
             enemy.SetEnemyTarget(GameManager.Instance.Player);
+            GameManager.Instance.CurrentEnemiesNumber++;
         }
         this.enabled = false;
     }

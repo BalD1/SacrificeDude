@@ -78,6 +78,7 @@ public class Enemy : Characters
     {
         Soul droppedSoul = Instantiate(soul, this.transform.position, Quaternion.identity).GetComponent<Soul>();
         droppedSoul.SetSoul(healAmount, soulScale);
+        GameManager.Instance.CurrentEnemiesNumber--;
         Destroy(root);
     }
 

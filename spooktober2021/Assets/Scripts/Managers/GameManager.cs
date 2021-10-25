@@ -84,6 +84,16 @@ public class GameManager : MonoBehaviour
             gameState = GameStates.MainMenu;
     }
 
+    private int currentEnemiesNumber;
+    public int CurrentEnemiesNumber
+    {
+        get => currentEnemiesNumber;
+        set
+        {
+            currentEnemiesNumber = value;
+        }
+    }
+
     public string GetActiveSceneName()
     {
         return SceneManager.GetActiveScene().name;
