@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private GameObject player;
+    public GameObject Player => player;
+
     #region instances
     private static GameManager instance;
     public static GameManager Instance
@@ -72,9 +75,12 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
 
-        if (SceneManager.GetActiveScene().name.Equals("MainScene"))
+        if (player == null)
+            player = GameObject.FindGameObjectWithTag("Player");
+
+        if (SceneManager.GetActiveScene().Equals("MainScene"))
             gameState = GameStates.InGame;
-        else if (SceneManager.GetActiveScene().name.Equals("MainMenu"))
+        else if (SceneManager.GetActiveScene().Equals("MainMenu"))
             gameState = GameStates.MainMenu;
     }
 

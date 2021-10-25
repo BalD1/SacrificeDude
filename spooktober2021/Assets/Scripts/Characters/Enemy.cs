@@ -13,6 +13,7 @@ public class Enemy : Characters
     [SerializeField] private Vector3 HUDoffset;
     [SerializeField] protected float stopDistance;
     [SerializeField] protected AIPath ai;
+    [SerializeField] protected AIDestinationSetter AIdestinationSetter;
 
     [Header("Dropped Soul")]
     [SerializeField] protected GameObject soul;
@@ -42,6 +43,12 @@ public class Enemy : Characters
     public void SetEnemyState(EnemyStates newState)
     {
         EnemyState = newState;
+    }
+
+    public void SetEnemyTarget(GameObject newTarget)
+    {
+        this.AIdestinationSetter.target = newTarget.transform;
+        this.target = newTarget.transform;
     }
 
 

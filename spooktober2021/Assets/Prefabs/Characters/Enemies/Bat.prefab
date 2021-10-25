@@ -67,6 +67,7 @@ MonoBehaviour:
   HUDoffset: {x: 0, y: 0.75, z: 0}
   stopDistance: 1.5
   ai: {fileID: 1742121292}
+  AIdestinationSetter: {fileID: 1742121291}
   soul: {fileID: 6192050438678724434, guid: ce9fb5bef258b5e47b1c9ae120a2a99b, type: 3}
   soulScale: {x: 1, y: 1}
   healAmount: 1
@@ -148,8 +149,8 @@ MonoBehaviour:
   targetCompatibility: {fileID: 0}
   maxAcceleration: -2.5
   rotationSpeed: 360
-  slowdownDistance: 0.6
-  pickNextWaypointDist: 0.44
+  slowdownDistance: 0.57
+  pickNextWaypointDist: 0.32
   endReachedDistance: 1.5
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
