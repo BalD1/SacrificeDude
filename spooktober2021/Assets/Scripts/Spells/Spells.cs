@@ -19,11 +19,21 @@ public class Spells : MonoBehaviour
 
     protected void CallStart()
     {
-
+        stats = spellInfos.SpellStats;
     }
 
     public void SetFirePoint(Transform point)
     {
         firePoint = point;
+    }
+
+    public SpellsScriptable.stats GetStats()
+    {
+        return spellInfos.SpellStats;
+    }
+
+    public void DebugStats()
+    {
+        spellInfos.PrintSpell();
     }
 }

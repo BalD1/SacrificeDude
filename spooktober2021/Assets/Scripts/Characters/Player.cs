@@ -15,9 +15,10 @@ public class Player : Characters
 
     private Vector2 mousePos;
 
+    private bool canShoot = true;
+
     private void Awake()
     {
-        stats = characterInfos.CharacterStats;
         if (cam == null)
             cam = Camera.main;
     }
@@ -33,6 +34,7 @@ public class Player : Characters
         if (GameManager.Instance.GameState == GameManager.GameStates.InGame)
         {
             ProcessInputs();
+            CameraFollow();
         }
     }
 
@@ -40,7 +42,7 @@ public class Player : Characters
     {
         if (GameManager.Instance.GameState == GameManager.GameStates.InGame)
         {
-            Movements();
+            Movements(moveDirection);
             RotateByMousePosition();
         }
     }
@@ -50,9 +52,11 @@ public class Player : Characters
         moveX = Input.GetAxisRaw("Horizontal");
         moveY = Input.GetAxisRaw("Vertical");
 
+        moveDirection = new Vector2(moveX, moveY).normalized;
+
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && canShoot)
         {
             FireSpell();
         }
@@ -61,14 +65,32 @@ public class Player : Characters
     private void RotateByMousePosition()
     {
         Vector2 lookDirection = mousePos - body.position;
-        Debug.Log(mousePos);
         float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
         body.rotation = angle;  
     }
 
     private void FireSpell()
     {
-        Spells spell = Instantiate(currentSelectedSpell.gameObject, this.firePoint.position, this.firePoint.rotation).GetComponent<Spells>();
+        canShoot = false;
+
+        Spells spell = currentSelectedSpell.GetComponent<Spells>();
+
+        TakeDamages(spell.GetStats().cost);
+
+        StartCoroutine(SpellCooldown(spell.GetStats().cooldown));
+
+        spell = Instantiate(currentSelectedSpell.gameObject, this.firePoint.position, this.firePoint.rotation).GetComponent<Spells>();
         spell.SetFirePoint(this.firePoint);
+    }
+
+    private IEnumerator SpellCooldown(float time)
+    {
+        yield return new WaitForSeconds(time);
+        canShoot = true;
+    }
+
+    private void CameraFollow()
+    {
+        cam.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, -10);
     }
 }

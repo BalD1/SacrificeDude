@@ -6,12 +6,11 @@ public class Fireball : Spells
 {
     private void Awake()
     {
-        stats = spellInfos.SpellStats;
+        CallStart();
     }
 
     private void Start()
     {
-        CallStart();
         Shoot();
     }
 
@@ -19,5 +18,15 @@ public class Fireball : Spells
     public void Shoot()
     {
         this.body.AddForce(base.firePoint.up * stats.speed, ForceMode2D.Impulse);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            collision.GetComponentInParent<Enemy>().TakeDamages(stats.damages);
+        }
+
+        Destroy(this.gameObject);
     }
 }

@@ -17,3 +17,4 @@ MonoBehaviour:
     damages: 2
     speed: 5
     cost: 1
+    cooldown: 1

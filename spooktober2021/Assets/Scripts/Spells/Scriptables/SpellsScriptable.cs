@@ -12,6 +12,7 @@ public class SpellsScriptable : ScriptableObject
         public float damages;
         public float speed;
         public float cost;
+        public float cooldown;
     }
     public stats SpellStats;
 
@@ -24,7 +25,8 @@ public class SpellsScriptable : ScriptableObject
         Debug.Log(SpellStats.name + " : \n" +
                   "Damages : " + SpellStats.damages + "                " +
                   "Speed : " + SpellStats.speed + "                " +
-                  "Cost : " + SpellStats.cost);
+                  "Cost : " + SpellStats.cost + "                " +
+                  "Cooldown : " + SpellStats.cooldown);
     }
     /// <summary>
     /// Prints the <paramref name="targetStats"/> of a given spell
@@ -35,7 +37,8 @@ public class SpellsScriptable : ScriptableObject
         Debug.Log(targetStats.name + " : \n" +
                   "Damages : " + targetStats.damages + "                " +
                   "Speed : " + targetStats.speed + "                " +
-                  "Cost : " + SpellStats.cost);
+                  "Cost : " + SpellStats.cost + "                " +
+                  "Cooldown : " + SpellStats.cooldown);
     }
     #endregion
 }
