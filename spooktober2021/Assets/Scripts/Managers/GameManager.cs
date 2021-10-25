@@ -78,9 +78,9 @@ public class GameManager : MonoBehaviour
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player");
 
-        if (SceneManager.GetActiveScene().Equals("MainScene"))
+        if (GetActiveSceneName().Equals("MainScene"))
             gameState = GameStates.InGame;
-        else if (SceneManager.GetActiveScene().Equals("MainMenu"))
+        else if (GetActiveSceneName().Equals("MainMenu"))
             gameState = GameStates.MainMenu;
     }
 
