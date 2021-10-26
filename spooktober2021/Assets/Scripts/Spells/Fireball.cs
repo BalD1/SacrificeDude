@@ -17,7 +17,7 @@ public class Fireball : Spells
 
     public void Shoot()
     {
-        this.body.AddForce(base.firePoint.up * stats.speed, ForceMode2D.Impulse);
+        this.body.AddForce(base.firePoint.right * stats.speed, ForceMode2D.Impulse);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

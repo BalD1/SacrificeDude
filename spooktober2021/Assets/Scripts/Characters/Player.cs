@@ -8,6 +8,7 @@ public class Player : Characters
     [Header("Player Related")]
     [SerializeField] private Camera cam;
 
+    [SerializeField] private GameObject arm;
     [SerializeField] private Transform firePoint;
 
     [SerializeField] private List<Spells> unlockedSpells;
@@ -89,9 +90,27 @@ public class Player : Characters
 
     private void RotateByMousePosition()
     {
-        Vector2 lookDirection = mousePos - body.position;
-        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
-        body.rotation = angle;  
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition.z = 5f;
+
+        Vector2 selfPosByCam = cam.WorldToScreenPoint(this.transform.position);
+
+        mousePosition.x -= selfPosByCam.x;
+        mousePosition.y -= selfPosByCam.y;
+
+        float angle = Mathf.Atan2(mousePosition.y, mousePosition.x) * Mathf.Rad2Deg;
+
+        arm.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        if (angle > -90f && angle < 90f)
+        {
+            this.transform.localScale = new Vector2(1, 1);
+            arm.transform.localScale = new Vector2(1, 1);
+        }
+        else
+        {
+            this.transform.localScale = new Vector2(-1, 1); 
+            arm.transform.localScale = new Vector2(-1, 1);
+        }
     }
 
     private void FireSpell()
@@ -105,7 +124,7 @@ public class Player : Characters
 
         StartCoroutine(SpellCooldown(spell.GetStats().cooldown));
 
-        spell = Instantiate(currentSelectedSpell.gameObject, this.firePoint.position, this.firePoint.rotation).GetComponent<Spells>();
+        spell = Instantiate(currentSelectedSpell.gameObject, this.firePoint.position, this.arm.transform.rotation).GetComponent<Spells>();
         spell.SetFirePoint(this.firePoint);
     }
 
@@ -116,8 +135,8 @@ public class Player : Characters
         StartCoroutine(SpellCooldown(meleeAttackCooldown));
 
         animator.SetTrigger("attack_melee");
-
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(meleePoint.position, attackRange, enemyLayer);
+
 
         foreach (Collider2D enemy in hitEnemies)
         {
