@@ -13,9 +13,20 @@ public class Player : Characters
     [SerializeField] private List<Spells> unlockedSpells;
     private Spells currentSelectedSpell;
 
+    [SerializeField] private LayerMask enemyLayer;
+
     private Vector2 mousePos;
 
-    private bool canShoot = true;
+    [Header("Melee attack")]
+    [SerializeField] private Transform meleePoint;
+    [SerializeField] private float meleeAttackCooldown = 0.5f;
+    [SerializeField] private float attackRange = 0.5f;
+    [SerializeField] private float meleeDamages;
+    [SerializeField] private int knockbackStrength = 10;
+    private float meleeAttackTimer;
+
+    private bool canFireSpell = true;
+    private bool canMeleeAttack = true;
 
     private void Awake()
     {
@@ -35,7 +46,16 @@ public class Player : Characters
         {
             ProcessInputs();
             CameraFollow();
+
+            if (meleeAttackTimer > 0)
+            {
+                meleeAttackTimer -= Time.deltaTime;
+
+                if (meleeAttackTimer <= 0)
+                    canMeleeAttack = true;
+            }
         }
+
     }
 
     private void FixedUpdate()
@@ -56,9 +76,14 @@ public class Player : Characters
 
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Input.GetMouseButtonDown(0) && canShoot)
+        if (Input.GetMouseButtonDown(0) && canFireSpell)
         {
             FireSpell();
+        }
+
+        if (Input.GetMouseButtonDown(1) && canMeleeAttack)
+        {
+            MeleeAttack();
         }
     }
 
@@ -71,7 +96,8 @@ public class Player : Characters
 
     private void FireSpell()
     {
-        canShoot = false;
+        canFireSpell = false;
+        PutMeleeAttackOnCooldown();
 
         Spells spell = currentSelectedSpell.GetComponent<Spells>();
 
@@ -83,14 +109,44 @@ public class Player : Characters
         spell.SetFirePoint(this.firePoint);
     }
 
+    private void MeleeAttack()
+    {
+        canFireSpell = false;
+        PutMeleeAttackOnCooldown();
+        StartCoroutine(SpellCooldown(meleeAttackCooldown));
+
+        animator.SetTrigger("attack_melee");
+
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(meleePoint.position, attackRange, enemyLayer);
+
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            enemy.GetComponentInParent<Enemy>().TakeMeleeAttack(meleeDamages, knockbackStrength, this.transform);
+        }
+    }
+
+    private void PutMeleeAttackOnCooldown()
+    {
+        canMeleeAttack = false;
+        meleeAttackTimer = meleeAttackCooldown;
+    }
+
     private IEnumerator SpellCooldown(float time)
     {
         yield return new WaitForSeconds(time);
-        canShoot = true;
+        canFireSpell = true;
     }
 
     private void CameraFollow()
     {
         cam.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, -10);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (meleePoint == null)
+            return;
+
+        Gizmos.DrawWireSphere(meleePoint.position, attackRange); 
     }
 }

@@ -65,6 +65,13 @@ MonoBehaviour:
   firePoint: {fileID: 5963992495944323373}
   unlockedSpells:
   - {fileID: 4839539695044427357, guid: 65394ebe8f4c38f47aecc85249748481, type: 3}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  meleePoint: {fileID: 5963992495944323373}
+  meleeAttackCooldown: 0.5
+  attackRange: 1.5
+  meleeDamages: 1
 --- !u!50 &98863344785169415
 Rigidbody2D:
   serializedVersion: 4
@@ -122,7 +129,7 @@ Animator:
   m_GameObject: {fileID: 98863344785169419}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 25df6ab963594fc45a277367faa3bc8e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

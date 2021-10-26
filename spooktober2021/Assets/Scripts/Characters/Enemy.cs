@@ -14,6 +14,7 @@ public class Enemy : Characters
     [SerializeField] protected float stopDistance;
     [SerializeField] protected AIPath ai;
     [SerializeField] protected AIDestinationSetter AIdestinationSetter;
+    [SerializeField] private int knockbackResistance = 0;
 
     [Header("Dropped Soul")]
     [SerializeField] protected GameObject soul;
@@ -80,6 +81,25 @@ public class Enemy : Characters
         droppedSoul.SetSoul(healAmount, soulScale);
         GameManager.Instance.CurrentEnemiesNumber--;
         Destroy(root);
+    }
+
+    public void TakeMeleeAttack(float damages, int strength, Transform attackerTransform)
+    {
+        ai.enabled = false; 
+        body.velocity = Vector2.zero;
+        base.TakeDamages(damages);
+        Vector2 direction = this.transform.position - attackerTransform.position;
+
+        strength = Mathf.Clamp(strength - knockbackResistance, 0, strength);
+
+        this.body.AddForce(direction.normalized * (strength - knockbackResistance),ForceMode2D.Impulse);
+        StartCoroutine(Knockback(0.1f));
+    }
+
+    private IEnumerator Knockback(float time)
+    {
+        yield return new WaitForSeconds(time);
+        ai.enabled = true;
     }
 
 }
