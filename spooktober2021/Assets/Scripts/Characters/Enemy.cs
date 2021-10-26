@@ -16,6 +16,8 @@ public class Enemy : Characters
     [SerializeField] protected AIDestinationSetter AIdestinationSetter;
     [SerializeField] private int knockbackResistance = 0;
 
+    protected bool canAttack;
+
     [Header("Dropped Soul")]
     [SerializeField] protected GameObject soul;
     [SerializeField] protected Vector2 soulScale;
@@ -53,16 +55,14 @@ public class Enemy : Characters
     }
 
 
-    protected void EnemyMovements()
+    protected void HUDFollow()
     {
         HUD.transform.position = this.transform.position + HUDoffset;
     }
 
     protected void CallUpdate()
     {
-        if (EnemyState == EnemyStates.Moving)
-        {
-        }
+        HUDFollow();
         CheckDistance();
     }
 

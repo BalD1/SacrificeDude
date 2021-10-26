@@ -88,7 +88,10 @@ public class Characters : MonoBehaviour
 
     protected void Death()
     {
-        _Death();
+        if (_Death != null)
+            _Death();
+        else
+            Debug.Log("Death was not set");
     }
 
     private IEnumerator Hit(float time)

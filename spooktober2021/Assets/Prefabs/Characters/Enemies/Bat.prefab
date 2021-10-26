@@ -72,6 +72,8 @@ MonoBehaviour:
   soul: {fileID: 6192050438678724434, guid: ce9fb5bef258b5e47b1c9ae120a2a99b, type: 3}
   soulScale: {x: 1, y: 1}
   healAmount: 1
+  dashSpeed: 7
+  dashTime: 0.5
 --- !u!50 &120479220836289880
 Rigidbody2D:
   serializedVersion: 4
@@ -456,7 +458,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0068896264, y: 0.053395584}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -467,7 +469,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6141741, y: 0.47982404}
+  m_Size: {x: 0.3, y: 0.4}
   m_EdgeRadius: 0
 --- !u!1 &120479222144620171
 GameObject:

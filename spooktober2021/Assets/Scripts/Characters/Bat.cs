@@ -5,12 +5,14 @@ using UnityEngine;
 public class Bat : Enemy
 {
     [Header("Bat related")]
-    [SerializeField] private float dashSpeed = 2;
+    [SerializeField] private float dashSpeed = 5;
+    [SerializeField] private float dashTime = 0.5f;
 
     private void Start()
     {
         CallStart();
 
+        canAttack = true;
         ai.maxSpeed = stats.speed;
         ai.endReachedDistance = stopDistance;
         _Death += OnDeathEvent;
@@ -20,23 +22,19 @@ public class Bat : Enemy
     private void Update()
     {
         CallUpdate();
-        if (enemyState == EnemyStates.Attacking)
+        if (enemyState == EnemyStates.Attacking && canAttack)
             Attack();
     }
 
-    private void FixedUpdate()
-    {
-        if (enemyState == EnemyStates.Moving)
-            EnemyMovements();
-    }
 
     private void Attack()
     {
         ai.enabled = false;
+        canAttack = false;
         body.velocity = Vector2.zero;
         Vector2 direction = GameManager.Instance.Player.transform.position - this.transform.position;
-        body.AddForce((direction.normalized * 2) * 10, ForceMode2D.Impulse);
-        StartCoroutine(WaitForAttack(0.3f));
+        body.AddForce((direction.normalized) * dashSpeed, ForceMode2D.Impulse);
+        StartCoroutine(WaitForAttack(dashTime));
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -48,6 +46,7 @@ public class Bat : Enemy
     private IEnumerator WaitForAttack(float time)
     {
         yield return new WaitForSeconds(time);
+        canAttack = true;
         ai.enabled = true;
     }
 }
