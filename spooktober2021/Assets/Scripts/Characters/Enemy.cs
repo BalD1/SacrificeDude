@@ -62,7 +62,6 @@ public class Enemy : Characters
     {
         if (EnemyState == EnemyStates.Moving)
         {
-            LookAtTarget(target);
         }
         CheckDistance();
     }

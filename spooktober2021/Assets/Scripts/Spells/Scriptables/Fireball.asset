@@ -15,6 +15,6 @@ MonoBehaviour:
   SpellStats:
     name: Fireball
     damages: 2
-    speed: 5
+    speed: 7
     cost: 1
     cooldown: 1

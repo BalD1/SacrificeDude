@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Bat : Enemy
 {
+    [Header("Bat related")]
+    [SerializeField] private float dashSpeed = 2;
 
     private void Start()
     {
@@ -30,12 +32,22 @@ public class Bat : Enemy
 
     private void Attack()
     {
-        animator.SetTrigger("attack");
+        ai.enabled = false;
+        body.velocity = Vector2.zero;
+        Vector2 direction = GameManager.Instance.Player.transform.position - this.transform.position;
+        body.AddForce((direction.normalized * 2) * 10, ForceMode2D.Impulse);
+        StartCoroutine(WaitForAttack(0.3f));
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
             collision.GetComponent<Player>().TakeDamages(stats.damages);
+    }
+
+    private IEnumerator WaitForAttack(float time)
+    {
+        yield return new WaitForSeconds(time);
+        ai.enabled = true;
     }
 }
