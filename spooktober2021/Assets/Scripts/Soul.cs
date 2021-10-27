@@ -22,7 +22,9 @@ public class Soul : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<Player>().Heal(healAmount);
+            Player player = collision.GetComponent<Player>();
+            player.Heal(healAmount);
+            player.SoulsCount += 1;
             Destroy(this.gameObject);
         }
     }

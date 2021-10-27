@@ -13,10 +13,22 @@ public class Player : Characters
 
     [SerializeField] private List<Spells> unlockedSpells;
     private Spells currentSelectedSpell;
+    private int currentSpellIndex;
 
     [SerializeField] private LayerMask enemyLayer;
 
     private Vector2 mousePos;
+
+    private int soulsCount = 0;
+    public int SoulsCount
+    {
+        get => soulsCount;
+        set
+        {
+            soulsCount = value;
+            UIManager.Instance.UpdateSoulsCount(soulsCount);
+        }
+    }
 
     [Header("Melee attack")]
     [SerializeField] private Transform meleePoint;
@@ -38,7 +50,8 @@ public class Player : Characters
     private void Start()
     {
         CallStart();
-        currentSelectedSpell = unlockedSpells[0];
+        SoulsCount = 0;
+        EquipSpell(0);
     }
 
     private void Update()
@@ -47,6 +60,7 @@ public class Player : Characters
         {
             ProcessInputs();
             CameraFollow();
+            ChangeSpellOnScroll();
 
             if (meleeAttackTimer > 0)
             {
@@ -67,6 +81,8 @@ public class Player : Characters
             RotateByMousePosition();
         }
     }
+
+    #region Movements / Inputs
 
     private void ProcessInputs()
     {
@@ -113,6 +129,10 @@ public class Player : Characters
         }
     }
 
+    #endregion
+
+    #region Attacks
+
     private void FireSpell()
     {
         canFireSpell = false;
@@ -155,6 +175,43 @@ public class Player : Characters
         yield return new WaitForSeconds(time);
         canFireSpell = true;
     }
+
+    #endregion
+
+    #region Spells
+
+    private void ChangeSpellOnScroll()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        {
+            if (currentSpellIndex >= unlockedSpells.Count - 1)
+                EquipSpell(0);
+            else
+                EquipSpell(currentSpellIndex + 1);
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+        {
+            if (currentSpellIndex <= 0)
+                EquipSpell(unlockedSpells.Count - 1);
+            else
+                EquipSpell(currentSpellIndex - 1);
+        }
+    }
+
+    private void EquipSpell(int index)
+    {
+        currentSpellIndex = index;
+        currentSelectedSpell = unlockedSpells[index];
+        UIManager.Instance.UpdateEquipedSpell(index);
+    }
+
+    public void UnlockSpell(Spells newSpell)
+    {
+        unlockedSpells.Add(newSpell);
+        UIManager.Instance.AddNewSpell(newSpell.GetStats().UIimage);
+    }
+
+    #endregion
 
     private void CameraFollow()
     {

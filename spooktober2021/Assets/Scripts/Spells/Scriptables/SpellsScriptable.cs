@@ -13,6 +13,7 @@ public class SpellsScriptable : ScriptableObject
         public float speed;
         public float cost;
         public float cooldown;
+        public Sprite UIimage;
     }
     public stats SpellStats;
 
@@ -37,8 +38,8 @@ public class SpellsScriptable : ScriptableObject
         Debug.Log(targetStats.name + " : \n" +
                   "Damages : " + targetStats.damages + "                " +
                   "Speed : " + targetStats.speed + "                " +
-                  "Cost : " + SpellStats.cost + "                " +
+                  "Cost : " + SpellStats .cost + "                " +
                   "Cooldown : " + SpellStats.cooldown);
-    }
+}
     #endregion
 }
