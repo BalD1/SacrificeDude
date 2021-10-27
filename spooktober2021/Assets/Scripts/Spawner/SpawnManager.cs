@@ -5,39 +5,25 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private List<Spawn> spawns;
-    [SerializeField] private float timeBetweenWaves = 5;
     private int spawnsIndex = 0;
-
-    private enum State
-    {
-        Spawning,
-        Idle,
-    }
-    private State state;
-
-    private void Start()
-    {
-        StartCoroutine(WaitForNextWave(timeBetweenWaves));
-        state = State.Spawning;
-    }
 
     private void Update()
     {
-        if (GameManager.Instance.CurrentEnemiesNumber <= 0 && state == State.Idle)
+        if (Input.GetKeyDown(KeyCode.Return))
         {
-            state = State.Spawning;
-            StartCoroutine(WaitForNextWave(timeBetweenWaves));
+            if (!GameManager.Instance.IsInWave)
+            {
+                GameManager.Instance.IsInWave = true;
+                SpawnNextWave();
+            }
         }
     }
 
-    private IEnumerator WaitForNextWave(float time)
+    private void SpawnNextWave()
     {
-        yield return new WaitForSeconds(time);
         if (spawnsIndex >= spawns.Count)
             spawnsIndex = 0;
         spawns[spawnsIndex].enabled = true;
         spawnsIndex++;
-
-        state = State.Idle;
     }
 }

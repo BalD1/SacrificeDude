@@ -31,6 +31,19 @@ public class GameManager : MonoBehaviour
         Pause,
         Gameover,
     }
+    private bool isInWave = false;
+    public bool IsInWave
+    {
+        get => isInWave;
+        set
+        {
+            isInWave = value;
+            if (isInWave)
+                UIManager.Instance.StartWave();
+            else
+                UIManager.Instance.EndWave();
+        }
+    }
 
     [SerializeField] private GameStates gameState;
     public GameStates GameState
@@ -41,23 +54,28 @@ public class GameManager : MonoBehaviour
             switch (value)
             {
                 case GameStates.MainMenu:
+                    Time.timeScale = 1;
                     if (GetActiveSceneName().Equals("MainScene"))
                         LoadScene("MainMenu");
 
                     break;
 
                 case GameStates.InCinematic:
+                    Time.timeScale = 1;
                     break;
 
                 case GameStates.InGame:
+                    Time.timeScale = 1;
                     if (GetActiveSceneName().Equals("MainMenu"))
                         LoadScene("MainScene");
                     break;
 
                 case GameStates.Pause:
+                    Time.timeScale = 0;
                     break;
 
                 case GameStates.Gameover:
+                    Time.timeScale = 0;
                     break;
 
                 default:
@@ -82,6 +100,8 @@ public class GameManager : MonoBehaviour
             gameState = GameStates.InGame;
         else if (GetActiveSceneName().Equals("MainMenu"))
             gameState = GameStates.MainMenu;
+
+        CurrentEnemiesNumber = 0;
     }
 
     private int currentEnemiesNumber;
@@ -91,6 +111,8 @@ public class GameManager : MonoBehaviour
         set
         {
             currentEnemiesNumber = value;
+            if (currentEnemiesNumber == 0)
+                IsInWave = false;
         }
     }
 

@@ -121,8 +121,7 @@ MonoBehaviour:
   cam: {fileID: 0}
   arm: {fileID: 980978361168627773}
   firePoint: {fileID: 5963992495944323373}
-  unlockedSpells:
-  - {fileID: 4839539695044427357, guid: 65394ebe8f4c38f47aecc85249748481, type: 3}
+  unlockedSpells: []
   enemyLayer:
     serializedVersion: 2
     m_Bits: 1024

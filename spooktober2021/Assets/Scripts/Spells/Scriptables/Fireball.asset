@@ -16,6 +16,7 @@ MonoBehaviour:
     name: Fireball
     damages: 2
     speed: 7
-    cost: 1
+    pvCost: 1
+    soulCost: 0
     cooldown: 1
     UIimage: {fileID: 21300000, guid: 88face0d7aa2805478119b1aef83b749, type: 3}

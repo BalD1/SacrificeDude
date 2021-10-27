@@ -16,6 +16,7 @@ MonoBehaviour:
     name: Lightning
     damages: 1
     speed: 30
-    cost: 2
+    pvCost: 2
+    soulCost: 5
     cooldown: 0.5
     UIimage: {fileID: 21300000, guid: 7bc74fab24077b449b8d1e67125eb322, type: 3}

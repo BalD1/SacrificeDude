@@ -22,8 +22,8 @@ TagManager:
   - DetectionRadius
   - Wall
   - PlayerFeets
-  - 
-  - 
+  - EnemyCollider
+  - Shop
   - 
   - 
   - 

@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI playerSoulsCount;
     [SerializeField] private Color unselectedSpellTransparence;
     [SerializeField] private GameObject spellImagesContainer;
+    [SerializeField] private GameObject nextWaveText;
     public List<Image> spellImages;
 
     private static UIManager instance;
@@ -92,4 +93,14 @@ public class UIManager : MonoBehaviour
             spellImages[i].color = imageColor;
         }
     }
+
+    public void StartWave()
+    {
+        nextWaveText.SetActive(false);
+    }
+    public void EndWave()
+    {
+        nextWaveText.SetActive(true);
+    }
+
 }

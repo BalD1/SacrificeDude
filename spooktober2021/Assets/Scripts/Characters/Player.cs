@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Player : Characters
 {
@@ -51,7 +52,9 @@ public class Player : Characters
     {
         CallStart();
         SoulsCount = 0;
-        EquipSpell(0);
+
+        if (unlockedSpells.Count > 0)
+            EquipSpell(0);
     }
 
     private void Update()
@@ -62,6 +65,7 @@ public class Player : Characters
             CameraFollow();
             ChangeSpellOnScroll();
 
+
             if (meleeAttackTimer > 0)
             {
                 meleeAttackTimer -= Time.deltaTime;
@@ -69,6 +73,13 @@ public class Player : Characters
                 if (meleeAttackTimer <= 0)
                     canMeleeAttack = true;
             }
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (GameManager.Instance.GameState == GameManager.GameStates.InGame)
+                GameManager.Instance.GameState = GameManager.GameStates.Pause;
+            else if (GameManager.Instance.GameState == GameManager.GameStates.Pause)
+                GameManager.Instance.GameState = GameManager.GameStates.InGame;
         }
 
     }
@@ -93,12 +104,12 @@ public class Player : Characters
 
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Input.GetMouseButtonDown(0) && canFireSpell)
+        if (Input.GetMouseButtonDown(0) && canFireSpell && !IsMouseOverUI() && currentSelectedSpell != null)
         {
             FireSpell();
         }
 
-        if (Input.GetMouseButtonDown(1) && canMeleeAttack)
+        if (Input.GetMouseButtonDown(1) && canMeleeAttack && !IsMouseOverUI())
         {
             MeleeAttack();
         }
@@ -129,6 +140,11 @@ public class Player : Characters
         }
     }
 
+    private bool IsMouseOverUI()
+    {
+        return EventSystem.current.IsPointerOverGameObject();
+    }
+
     #endregion
 
     #region Attacks
@@ -140,7 +156,7 @@ public class Player : Characters
 
         Spells spell = currentSelectedSpell.GetComponent<Spells>();
 
-        TakeDamages(spell.GetStats().cost);
+        TakeDamages(spell.GetStats().pvCost);
 
         StartCoroutine(SpellCooldown(spell.GetStats().cooldown));
 
@@ -156,7 +172,6 @@ public class Player : Characters
 
         animator.SetTrigger("attack_melee");
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(meleePoint.position, attackRange, enemyLayer);
-
 
         foreach (Collider2D enemy in hitEnemies)
         {
@@ -209,6 +224,22 @@ public class Player : Characters
     {
         unlockedSpells.Add(newSpell);
         UIManager.Instance.AddNewSpell(newSpell.GetStats().UIimage);
+        if (unlockedSpells.Count == 1)
+            EquipSpell(0);
+    }
+
+    public bool TryBuySpell(Spells spell)
+    {
+        int spellCost = spell.GetStats().soulCost;
+
+        if (spellCost > this.soulsCount)
+            return false;
+        else
+        {
+            SoulsCount -= spellCost;
+            UnlockSpell(spell);
+            return true;
+        }
     }
 
     #endregion
