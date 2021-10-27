@@ -12,7 +12,6 @@ public class Lightning : Spells
     private GameObject enemySource;
     private Transform target;
 
-    private bool bounced = false;
     public int bounces = 2;
 
     private void Awake()
@@ -62,7 +61,6 @@ public class Lightning : Spells
                     target = hitEnemies[1].transform;
                     this.body.velocity = Vector2.zero;
                     Shoot((target.transform.position - this.transform.position).normalized);
-                    bounced = true;
                 }
                 else
                     Destroy(this.gameObject);

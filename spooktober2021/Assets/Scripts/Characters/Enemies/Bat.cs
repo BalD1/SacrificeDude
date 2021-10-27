@@ -12,6 +12,9 @@ public class Bat : Enemy
     {
         CallStart();
 
+        if (target == null)
+            target = GameManager.Instance.Player.transform;
+
         canAttack = true;
         ai.maxSpeed = stats.speed;
         ai.endReachedDistance = stopDistance;

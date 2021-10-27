@@ -15,6 +15,7 @@ public class Enemy : Characters
     [SerializeField] protected AIPath ai;
     [SerializeField] protected AIDestinationSetter AIdestinationSetter;
     [SerializeField] private int knockbackResistance = 0;
+    [SerializeField] protected bool isStatic = false;
 
     protected bool canAttack;
 
@@ -34,23 +35,22 @@ public class Enemy : Characters
         get => enemyState;
         set
         {
-            if (value == EnemyStates.Attacking)
-                ai.canMove = false;
-            else
-                ai.canMove = true;
+            if (!isStatic)
+            {
+                if (value == EnemyStates.Attacking)
+                    ai.canMove = false;
+                else
+                    ai.canMove = true;
+            }
 
             enemyState = value;
         }
     }
 
-    public void SetEnemyState(EnemyStates newState)
-    {
-        EnemyState = newState;
-    }
-
     public void SetEnemyTarget(GameObject newTarget)
     {
-        this.AIdestinationSetter.target = newTarget.transform;
+        if (!isStatic)
+            this.AIdestinationSetter.target = newTarget.transform;
         this.target = newTarget.transform;
     }
 
@@ -64,6 +64,12 @@ public class Enemy : Characters
     {
         HUDFollow();
         CheckDistance();
+        FlipSpriteOnTargetPosition();
+    }
+
+    private void FlipSpriteOnTargetPosition()
+    {
+        this.sprite.flipX = target.transform.position.x > this.transform.position.x;
     }
 
     protected void CheckDistance()
@@ -84,15 +90,19 @@ public class Enemy : Characters
 
     public void TakeMeleeAttack(float damages, int strength, Transform attackerTransform)
     {
-        ai.enabled = false; 
-        body.velocity = Vector2.zero;
         base.TakeDamages(damages);
-        Vector2 direction = this.transform.position - attackerTransform.position;
+        if (!isStatic)
+        {
+            ai.enabled = false;
 
-        strength = Mathf.Clamp(strength - knockbackResistance, 0, strength);
+            body.velocity = Vector2.zero;
+            Vector2 direction = this.transform.position - attackerTransform.position;
 
-        this.body.AddForce(direction.normalized * (strength - knockbackResistance),ForceMode2D.Impulse);
-        StartCoroutine(Knockback(0.1f));
+            strength = Mathf.Clamp(strength - knockbackResistance, 0, strength);
+
+            this.body.AddForce(direction.normalized * (strength - knockbackResistance), ForceMode2D.Impulse);
+            StartCoroutine(Knockback(0.1f));
+        }
     }
 
     private IEnumerator Knockback(float time)
