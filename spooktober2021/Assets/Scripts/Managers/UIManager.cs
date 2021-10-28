@@ -9,6 +9,9 @@ public class UIManager : MonoBehaviour
 {
     [Header("Menus")]
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject optionsMenu;
+    public GameObject OptionsMenu { get => optionsMenu; }
+
 
     [Header("Player related")]
     [SerializeField] private TextMeshProUGUI playerSoulsCount;

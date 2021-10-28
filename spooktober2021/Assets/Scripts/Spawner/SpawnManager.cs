@@ -9,7 +9,7 @@ public class SpawnManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) && GameManager.Instance.GameState == GameManager.GameStates.InGame)
         {
             if (!GameManager.Instance.IsInWave)
             {
