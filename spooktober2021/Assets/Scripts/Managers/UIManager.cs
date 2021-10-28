@@ -7,6 +7,9 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+    [Header("Menus")]
+    [SerializeField] private GameObject pauseMenu;
+
     [Header("Player related")]
     [SerializeField] private TextMeshProUGUI playerSoulsCount;
     [SerializeField] private Color unselectedSpellTransparence;
@@ -29,10 +32,14 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        spellImages = new List<Image>();
-        foreach (Transform child in spellImagesContainer.transform)
+
+        if(spellImagesContainer != null)
         {
-            spellImages.Add(child.GetComponent<Image>());
+            spellImages = new List<Image>();
+            foreach (Transform child in spellImagesContainer.transform)
+            {
+                spellImages.Add(child.GetComponent<Image>());
+            }
         }
     }
 
@@ -51,6 +58,7 @@ public class UIManager : MonoBehaviour
                 break;
 
             case GameManager.GameStates.Pause:
+                pauseMenu.SetActive(true);
                 break;
 
             case GameManager.GameStates.Gameover:
@@ -58,6 +66,35 @@ public class UIManager : MonoBehaviour
 
             default:
                 Debug.Log(value + " not found in switch statement.");
+                break;
+        }
+    }
+
+    public void OnButtonClick(string button)
+    {
+        switch (button)
+        {
+            case "play":
+                GameManager.Instance.GameState = GameManager.GameStates.InGame;
+                break;
+
+            case "options":
+                break;
+
+            case "quit":
+                GameManager.Instance.QuitGame();
+                break;
+
+            case "continue":
+                GameManager.Instance.GameState = GameManager.GameStates.InGame;
+                break;
+
+            case "mainmenu":
+                GameManager.Instance.GameState = GameManager.GameStates.MainMenu;
+                break;
+
+            default:
+                Debug.LogError(button + " not found in switch statement.");
                 break;
         }
     }

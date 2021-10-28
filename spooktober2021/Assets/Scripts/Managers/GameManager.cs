@@ -97,11 +97,13 @@ public class GameManager : MonoBehaviour
             player = GameObject.FindGameObjectWithTag("Player");
 
         if (GetActiveSceneName().Equals("MainScene"))
+        {
             gameState = GameStates.InGame;
+            CurrentEnemiesNumber = 0;
+        }
         else if (GetActiveSceneName().Equals("MainMenu"))
             gameState = GameStates.MainMenu;
 
-        CurrentEnemiesNumber = 0;
     }
 
     private int currentEnemiesNumber;
@@ -135,5 +137,10 @@ public class GameManager : MonoBehaviour
         }
         Debug.LogError(searchedAnimation + " not found in " + animator + ".");
         return 0;
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
