@@ -58,6 +58,8 @@ public class UIManager : MonoBehaviour
                 break;
 
             case GameManager.GameStates.InGame:
+                if (pauseMenu != null)
+                    pauseMenu.SetActive(false);
                 break;
 
             case GameManager.GameStates.Pause:

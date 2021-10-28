@@ -37,6 +37,7 @@ public class Bat : Enemy
         body.velocity = Vector2.zero;
         Vector2 direction = GameManager.Instance.Player.transform.position - this.transform.position;
         body.AddForce((direction.normalized) * dashSpeed, ForceMode2D.Impulse);
+        audioSource.PlayOneShot(GetSFXByName("attack"));
         StartCoroutine(WaitForAttack(dashTime));
     }
 

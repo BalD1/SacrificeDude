@@ -43,6 +43,7 @@ public class Pumpkin : Enemy
         firepoint.transform.rotation = rot;
         EnemyFireball launchedFireball = Instantiate(fireball, firepoint.position, firepoint.rotation).GetComponent<EnemyFireball>();
         launchedFireball.Shoot(this.firepoint, newDamages: this.stats.damages);
+        audioSource.PlayOneShot(GetSFXByName("attack"));
 
         StartCoroutine(AttackCooldown(delayBetweenAttacks));
     }

@@ -50,6 +50,7 @@ public class AudioManager : MonoBehaviour
     {
         // sounds
 
+        clic,
 
         // musics
 
@@ -276,6 +277,10 @@ public class AudioManager : MonoBehaviour
         }
 
         Debug.LogError(searchedSound + " not found in Audio Clips.");
+    }
+    public void Play2DSound(AudioClip clip)
+    {
+        source2D.PlayOneShot(clip);
     }
 
     #endregion

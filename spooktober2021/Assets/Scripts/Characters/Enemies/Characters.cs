@@ -18,6 +18,16 @@ public class Characters : MonoBehaviour
     [SerializeField] private Material hitMaterial;
     private Material baseMaterial;
 
+    [Header("Audio")]
+    [SerializeField] protected AudioSource audioSource;
+    [SerializeField] protected List<SFX> sounds;
+    [System.Serializable]
+    protected struct SFX
+    {
+        public string name;
+        public AudioClip clip;
+    }
+
     protected Vector2 moveDirection;
     protected float moveX, moveY;
 
@@ -58,10 +68,13 @@ public class Characters : MonoBehaviour
         if (amount < 0)
             amount *= -1;
         this.stats.currentHP -= amount;
+
+
         if (this.stats.currentHP <= 0)
             Death();
         else
         {
+            audioSource.PlayOneShot(GetSFXByName("hit"));
             this.sprite.material = hitMaterial;
             StartCoroutine(Hit(stats.invincibleTime));
         }
@@ -89,9 +102,28 @@ public class Characters : MonoBehaviour
     protected void Death()
     {
         if (_Death != null)
+        {
+            audioSource.PlayOneShot(GetSFXByName("death"));
+            audioSource.GetComponent<DelayedDestroy>().enabled = true;
+            audioSource.transform.parent = null;
+            Destroy(this.gameObject);
+
             _Death();
+        }
         else
             Debug.Log("Death was not set");
+    }
+
+    protected AudioClip GetSFXByName(string searchedAudio)
+    {
+        foreach(SFX sfx in sounds)
+        {
+            if (sfx.name.Equals(searchedAudio))
+                return sfx.clip;
+        }
+
+        Debug.LogError(searchedAudio + " not found in " + this.name + " character.");
+        return null;
     }
 
     private IEnumerator Hit(float time)

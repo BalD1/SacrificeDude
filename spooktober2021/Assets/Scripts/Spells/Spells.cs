@@ -12,6 +12,17 @@ public class Spells : MonoBehaviour
     [Header("Components")]
     [SerializeField] protected Rigidbody2D body;
     [SerializeField] protected SpriteRenderer sprite;
+    [SerializeField] protected GameObject objectLight;
+
+    [Header("Audio")]
+    [SerializeField] protected AudioSource audioSource;
+    [SerializeField] protected List<SFX> sounds;
+    [System.Serializable]
+    protected struct SFX
+    {
+        public string name;
+        public AudioClip clip;
+    }
 
     protected Transform firePoint;
 
@@ -35,5 +46,16 @@ public class Spells : MonoBehaviour
     public void DebugStats()
     {
         spellInfos.PrintSpell();
+    }
+    protected AudioClip GetSFXByName(string searchedAudio)
+    {
+        foreach (SFX sfx in sounds)
+        {
+            if (sfx.name.Equals(searchedAudio))
+                return sfx.clip;
+        }
+
+        Debug.LogError(searchedAudio + " not found in " + this.name + " character.");
+        return null;
     }
 }

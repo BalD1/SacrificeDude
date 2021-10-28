@@ -8,6 +8,7 @@ public class Lightning : Spells
 
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private float searchEnemyRadius = 10;
+    [SerializeField] private GameObject particles;
 
     private GameObject enemySource;
     private Transform target;
@@ -32,6 +33,7 @@ public class Lightning : Spells
     public void Shoot(Vector2 direction)
     {
         this.body.AddForce(direction * stats.speed, ForceMode2D.Impulse);
+        audioSource.PlayOneShot(GetSFXByName("electric"));
     }
 
     private void TravelToTarget()
@@ -45,6 +47,9 @@ public class Lightning : Spells
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        audioSource.PlayOneShot(GetSFXByName("electric"));
+
+
         if (collision.CompareTag("Enemy") && collision.gameObject != enemySource)
         {
             enemySource = collision.gameObject;
@@ -63,14 +68,26 @@ public class Lightning : Spells
                     Shoot((target.transform.position - this.transform.position).normalized);
                 }
                 else
+                {
+                    audioSource.GetComponent<DelayedDestroy>().enabled = true;
+                    audioSource.transform.parent = null;
                     Destroy(this.gameObject);
+                }
             }
             else
+            {
+                audioSource.GetComponent<DelayedDestroy>().enabled = true;
+                audioSource.transform.parent = null;
                 Destroy(this.gameObject);
+            }
         }
         else if (!collision.CompareTag("Enemy"))
             if (!collision.CompareTag("EnemySpell"))
+            {
+                audioSource.GetComponent<DelayedDestroy>().enabled = true;
+                audioSource.transform.parent = null;
                 Destroy(this.gameObject);
+            }
 
     }
 

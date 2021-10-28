@@ -74,13 +74,6 @@ public class Player : Characters
                     canMeleeAttack = true;
             }
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (GameManager.Instance.GameState == GameManager.GameStates.InGame)
-                GameManager.Instance.GameState = GameManager.GameStates.Pause;
-            else if (GameManager.Instance.GameState == GameManager.GameStates.Pause)
-                GameManager.Instance.GameState = GameManager.GameStates.InGame;
-        }
 
     }
 
@@ -174,6 +167,8 @@ public class Player : Characters
         StartCoroutine(SpellCooldown(meleeAttackCooldown));
 
         animator.SetTrigger("attack_melee");
+        this.audioSource.PlayOneShot(GetSFXByName("meleeAttack"));
+
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(meleePoint.position, attackRange, enemyLayer);
 
         foreach (Collider2D enemy in hitEnemies)

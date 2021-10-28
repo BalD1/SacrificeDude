@@ -143,4 +143,21 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (GameState == GameStates.InGame)
+                GameState = GameStates.Pause;
+            else if (GameState == GameStates.Pause)
+            {
+                if (UIManager.Instance.OptionsMenu.activeSelf)
+                    UIManager.Instance.OptionsMenu.SetActive(false);
+                else
+                    GameState = GameStates.InGame;
+
+            }
+        }
+    }
 }

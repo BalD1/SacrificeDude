@@ -18,11 +18,14 @@ public class EnemyFireball : Spells
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        audioSource.PlayOneShot(GetSFXByName("hit"));
         if (collision.CompareTag("Player"))
         {
             collision.GetComponentInParent<Player>().TakeDamages(stats.damages);
         }
 
+        audioSource.GetComponent<DelayedDestroy>().enabled = true;
+        audioSource.transform.parent = null;
         Destroy(this.gameObject);
     }
 }

@@ -48,6 +48,7 @@ public class Skeleton : Enemy
         canAttack = false;
         body.velocity = Vector2.zero;
         animator.SetTrigger("attack");
+        audioSource.PlayOneShot(GetSFXByName("startAttack"));
 
         StartCoroutine(WaitForAttack(attackAnimationTime));
     }
@@ -55,6 +56,7 @@ public class Skeleton : Enemy
     private void MeleeAttack()
     {
         Collider2D hit = Physics2D.OverlapCircle(attackPoint.position, attackRange, playerLayer);
+        audioSource.PlayOneShot(GetSFXByName("attack"));
 
         if (hit != null)
         {

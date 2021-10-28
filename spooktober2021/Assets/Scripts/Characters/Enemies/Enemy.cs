@@ -98,6 +98,7 @@ public class Enemy : Characters
 
     protected void OnDeathEvent()
     {
+        animator.enabled = false;
         Soul droppedSoul = Instantiate(soul, this.transform.position, Quaternion.identity).GetComponent<Soul>();
         droppedSoul.SetSoul(healAmount, soulScale);
         GameManager.Instance.CurrentEnemiesNumber--;
