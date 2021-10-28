@@ -27,6 +27,7 @@ public class Fireball : Spells
             collision.GetComponentInParent<Enemy>().TakeDamages(stats.damages);
         }
 
-        Destroy(this.gameObject);
+        if (!collision.CompareTag("EnemySpell"))
+            Destroy(this.gameObject);
     }
 }

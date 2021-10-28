@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 8085018206531949606}
   m_Layer: 17
   m_Name: EnemyFireball
-  m_TagString: Spell
+  m_TagString: EnemySpell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

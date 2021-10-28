@@ -69,7 +69,8 @@ public class Lightning : Spells
                 Destroy(this.gameObject);
         }
         else if (!collision.CompareTag("Enemy"))
-            Destroy(this.gameObject);
+            if (!collision.CompareTag("EnemySpell"))
+                Destroy(this.gameObject);
 
     }
 
