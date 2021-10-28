@@ -16,6 +16,7 @@ public class Enemy : Characters
     [SerializeField] protected AIDestinationSetter AIdestinationSetter;
     [SerializeField] private int knockbackResistance = 0;
     [SerializeField] protected bool isStatic = false;
+    [SerializeField] protected bool flipOnlySprite = true;
 
     protected bool canAttack;
 
@@ -64,12 +65,27 @@ public class Enemy : Characters
     {
         HUDFollow();
         CheckDistance();
-        FlipSpriteOnTargetPosition();
+
+        if (flipOnlySprite)
+            FlipSpriteOnTargetPosition();
+        else
+            FlipObjectOnTargetPosition();
     }
 
     private void FlipSpriteOnTargetPosition()
     {
         this.sprite.flipX = target.transform.position.x > this.transform.position.x;
+    }
+
+    private void FlipObjectOnTargetPosition()
+    {
+        Vector2 scale = this.transform.localScale;
+        if (target.transform.position.x > this.transform.position.x)
+            scale.x = 1;
+        else
+            scale.x = -1;
+
+        this.transform.localScale = scale;
     }
 
     protected void CheckDistance()

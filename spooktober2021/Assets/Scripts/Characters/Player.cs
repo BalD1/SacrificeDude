@@ -151,10 +151,13 @@ public class Player : Characters
 
     private void FireSpell()
     {
+        Spells spell = currentSelectedSpell.GetComponent<Spells>();
+        if (spell.GetStats().pvCost >= this.stats.currentHP)
+            return;
+
         canFireSpell = false;
         PutMeleeAttackOnCooldown();
 
-        Spells spell = currentSelectedSpell.GetComponent<Spells>();
 
         TakeDamages(spell.GetStats().pvCost);
 
@@ -197,19 +200,22 @@ public class Player : Characters
 
     private void ChangeSpellOnScroll()
     {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        if (unlockedSpells.Count != 0)
         {
-            if (currentSpellIndex >= unlockedSpells.Count - 1)
-                EquipSpell(0);
-            else
-                EquipSpell(currentSpellIndex + 1);
-        }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
-        {
-            if (currentSpellIndex <= 0)
-                EquipSpell(unlockedSpells.Count - 1);
-            else
-                EquipSpell(currentSpellIndex - 1);
+            if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+            {
+                if (currentSpellIndex >= unlockedSpells.Count - 1)
+                    EquipSpell(0);
+                else
+                    EquipSpell(currentSpellIndex + 1);
+            }
+            else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+            {
+                if (currentSpellIndex <= 0)
+                    EquipSpell(unlockedSpells.Count - 1);
+                else
+                    EquipSpell(currentSpellIndex - 1);
+            }
         }
     }
 

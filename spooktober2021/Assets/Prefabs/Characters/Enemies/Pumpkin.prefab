@@ -528,6 +528,7 @@ MonoBehaviour:
   AIdestinationSetter: {fileID: 0}
   knockbackResistance: 100
   isStatic: 1
+  flipOnlySprite: 1
   soul: {fileID: 6192050438678724434, guid: ce9fb5bef258b5e47b1c9ae120a2a99b, type: 3}
   soulScale: {x: 2, y: 2}
   healAmount: 2
