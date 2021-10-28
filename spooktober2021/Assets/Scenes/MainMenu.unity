@@ -583,7 +583,11 @@ MonoBehaviour:
   soundSlider: {fileID: 352860329}
   volMultiplier: 30
   soundClips: []
-  musicClips: []
+  musicClips:
+  - clipName: MainMenu
+    clip: {fileID: 8300000, guid: 8c7db16b608a6de4fa2ff872e98ec228, type: 3}
+  - clipName: InGame
+    clip: {fileID: 8300000, guid: a173d3522cbc3e041adb862d6f48372f, type: 3}
 --- !u!1 &429921413
 GameObject:
   m_ObjectHideFlags: 0
@@ -2783,7 +2787,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -4019467390812009789, guid: dfcec6203dd61c04ca23efeabd700027, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 8c7db16b608a6de4fa2ff872e98ec228, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
