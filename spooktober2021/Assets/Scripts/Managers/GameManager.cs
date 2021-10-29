@@ -5,10 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private Camera mainCam;
     [SerializeField] private GameObject player;
     public GameObject Player => player;
 
     public GameObject vampireBoss;
+
+    public bool lastWave;
 
     #region instances
     private static GameManager instance;
@@ -32,6 +35,7 @@ public class GameManager : MonoBehaviour
         InGame,
         Pause,
         Gameover,
+        Win,
     }
     private bool isInWave = false;
     public bool IsInWave
@@ -43,7 +47,12 @@ public class GameManager : MonoBehaviour
             if (isInWave)
                 UIManager.Instance.StartWave();
             else
+            {
+                if (lastWave)
+                    GameState = GameStates.Win;
+
                 UIManager.Instance.EndWave();
+            }
         }
     }
 
@@ -63,6 +72,10 @@ public class GameManager : MonoBehaviour
                     break;
 
                 case GameStates.InCinematic:
+                    Vector3 camPos = mainCam.transform.position;
+                    camPos.x = 0;
+                    camPos.y = 0;
+                    mainCam.transform.position = camPos;
                     Time.timeScale = 1;
                     break;
 
@@ -77,6 +90,10 @@ public class GameManager : MonoBehaviour
                     break;
 
                 case GameStates.Gameover:
+                    Time.timeScale = 0;
+                    break;
+
+                case GameStates.Win:
                     Time.timeScale = 0;
                     break;
 
@@ -95,16 +112,19 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
 
+        if (mainCam == null)
+            mainCam = Camera.main;
+
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player");
 
         if (GetActiveSceneName().Equals("MainScene"))
         {
-            gameState = GameStates.InGame;
+            GameState = GameStates.InGame;
             CurrentEnemiesNumber = 0;
         }
         else if (GetActiveSceneName().Equals("MainMenu"))
-            gameState = GameStates.MainMenu;
+            GameState = GameStates.MainMenu;
 
     }
 

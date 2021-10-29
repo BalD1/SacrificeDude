@@ -125,7 +125,6 @@ MonoBehaviour:
   animator: {fileID: 9115153533807749819}
   shopWindow: {fileID: 0}
   trigger: {fileID: 481783919}
-  scrollbar: {fileID: 0}
 --- !u!212 &9115153533807749797
 SpriteRenderer:
   m_ObjectHideFlags: 0

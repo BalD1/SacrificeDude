@@ -31,6 +31,8 @@ public class Player : Characters
         }
     }
 
+    [SerializeField] private bool cantLose;
+
     [Header("Melee attack")]
     [SerializeField] private Transform meleePoint;
     [SerializeField] private float meleeAttackCooldown = 0.5f;
@@ -55,6 +57,9 @@ public class Player : Characters
 
         if (unlockedSpells.Count > 0)
             EquipSpell(0);
+
+        _Death += OnDeathEvent;
+
     }
 
     private void Update()
@@ -244,6 +249,12 @@ public class Player : Characters
     }
 
     #endregion
+
+    private void OnDeathEvent()
+    {
+        if (!cantLose)
+            GameManager.Instance.GameState = GameManager.GameStates.Gameover;
+    }
 
     private void CameraFollow()
     {

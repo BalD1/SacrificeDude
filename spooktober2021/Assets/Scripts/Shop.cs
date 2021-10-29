@@ -56,6 +56,9 @@ public class Shop : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.GameState == GameManager.GameStates.InCinematic)
+            animator.SetTrigger("bossSpawn");
+
         if (!GameManager.Instance.IsInWave && state == State.closed)
             ShopState = State.open;
         else if (GameManager.Instance.IsInWave && state == State.open)

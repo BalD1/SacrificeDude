@@ -11,7 +11,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject optionsMenu;
     public GameObject OptionsMenu { get => optionsMenu; }
+    [SerializeField] private GameObject HUD;
+    public GameObject GetHUD { get => HUD; }
+    [SerializeField] private GameObject blackBars;
+    public GameObject BlackBars { get => blackBars; }
+    public Animator BlackBarsAnimator { get => blackBars.GetComponent<Animator>(); }
+    [SerializeField] private GameObject shopMenu;
 
+    [SerializeField] private GameObject winScreen;
+    [SerializeField] private GameObject gameoverScreen;
 
     [Header("Player related")]
     [SerializeField] private TextMeshProUGUI playerSoulsCount;
@@ -55,18 +63,34 @@ public class UIManager : MonoBehaviour
                 break;
 
             case GameManager.GameStates.InCinematic:
+                BlackBarsAnimator.SetTrigger("appear"); 
+
+                nextWaveText.SetActive(false);
+
+                if (shopMenu.activeSelf)
+                    shopMenu.SetActive(false);
                 break;
 
             case GameManager.GameStates.InGame:
                 if (pauseMenu != null)
                     pauseMenu.SetActive(false);
+                BlackBarsAnimator.SetTrigger("disappear");
                 break;
 
             case GameManager.GameStates.Pause:
                 pauseMenu.SetActive(true);
+                nextWaveText.SetActive(false);
                 break;
 
             case GameManager.GameStates.Gameover:
+                gameoverScreen.SetActive(true);
+                HUD.SetActive(false);
+                nextWaveText.SetActive(false);
+                break;
+
+            case GameManager.GameStates.Win:
+                winScreen.SetActive(true);
+                HUD.SetActive(false);
                 break;
 
             default:

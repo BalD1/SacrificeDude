@@ -48,6 +48,11 @@ public class Enemy : Characters
         }
     }
 
+    public void SetCanMove(bool newCanMove)
+    {
+        ai.canMove = newCanMove;
+    }
+
     public void SetEnemyTarget(GameObject newTarget)
     {
         if (!isStatic)

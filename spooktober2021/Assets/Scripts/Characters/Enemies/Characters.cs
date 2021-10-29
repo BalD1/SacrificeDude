@@ -9,6 +9,7 @@ public class Characters : MonoBehaviour
     [Header("Stats")]
     [SerializeField] protected CharactersScriptable characterInfos;
     [SerializeField] protected CharactersScriptable.stats stats;
+    [SerializeField] protected bool isPlayer;
 
     [Header("Components")]
     [SerializeField] protected Animator animator;
@@ -103,10 +104,13 @@ public class Characters : MonoBehaviour
     {
         if (_Death != null)
         {
-            audioSource.PlayOneShot(GetSFXByName("death"));
-            audioSource.GetComponent<DelayedDestroy>().enabled = true;
-            audioSource.transform.parent = null;
-            Destroy(this.gameObject);
+            if (!isPlayer)
+            {
+                audioSource.PlayOneShot(GetSFXByName("death"));
+                audioSource.GetComponent<DelayedDestroy>().enabled = true;
+                audioSource.transform.parent = null;
+                Destroy(this.gameObject);
+            }
 
             _Death();
         }

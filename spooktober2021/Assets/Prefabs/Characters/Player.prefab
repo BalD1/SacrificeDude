@@ -241,6 +241,7 @@ MonoBehaviour:
     speed: 0
     damages: 0
     invincibleTime: 0
+  isPlayer: 1
   animator: {fileID: 5963992496201150833}
   body: {fileID: 98863344785169415}
   sprite: {fileID: 98863345092904122}
@@ -261,6 +262,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 1024
+  cantLose: 0
   meleePoint: {fileID: 4658417213980712486}
   meleeAttackCooldown: 0.35
   attackRange: 0.5

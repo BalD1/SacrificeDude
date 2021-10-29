@@ -18,13 +18,25 @@ public class Spawn : MonoBehaviour
         get => waveData;
     }
 
+    [SerializeField] private bool isBoss;
+
     private void OnEnable()
     {
-        foreach(SpawnPointData data in waveData)
+        if (!isBoss)
         {
-            Instantiate(data.spawnEffect, data.point.position, Quaternion.identity);
+            GameManager.Instance.IsInWave = true;
+            foreach (SpawnPointData data in waveData)
+            {
+                Instantiate(data.spawnEffect, data.point.position, Quaternion.identity);
+            }
+            StartCoroutine(WaitForEffect(1.5f));
         }
-        StartCoroutine(WaitForEffect(1.5f));
+        else
+        {
+            BossSpawner spawner = Instantiate(waveData[0].spawnEffect, waveData[0].point.position, Quaternion.identity).GetComponent<BossSpawner>();
+            spawner.enemyToSpawn = waveData[0].enemy;
+            this.enabled = false;
+        }
     }
 
     private IEnumerator WaitForEffect(float time)

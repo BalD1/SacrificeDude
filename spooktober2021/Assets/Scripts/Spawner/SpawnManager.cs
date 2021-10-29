@@ -14,7 +14,6 @@ public class SpawnManager : MonoBehaviour
         {
             if (!GameManager.Instance.IsInWave)
             {
-                GameManager.Instance.IsInWave = true;
                 SpawnNextWave();
             }
         }
@@ -23,9 +22,11 @@ public class SpawnManager : MonoBehaviour
     private void SpawnNextWave()
     {
         audioSource.Play();
-        if (spawnsIndex >= spawns.Count)
-            spawnsIndex = 0;
+
         spawns[spawnsIndex].enabled = true;
         spawnsIndex++;
+
+        if (spawnsIndex == spawns.Count)
+            GameManager.Instance.lastWave = true;
     }
 }
