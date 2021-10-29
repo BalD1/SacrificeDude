@@ -30,7 +30,7 @@ public class Vampire : Enemy
 
     public void TeleportToCenter()
     {
-        Vector2 pos = new Vector2(0, 1);
+        Vector2 pos = new Vector2(0, 2);
         this.transform.position = pos;
     }
 

@@ -5,6 +5,9 @@ using UnityEngine;
 public class VampireBossBehaviour_Spelling : StateMachineBehaviour
 {
 
+    [SerializeField] private GameObject soul;
+    [SerializeField] private Vector2 soulsSpawnPos;
+
     [SerializeField] private float attackTime;
     [SerializeField] private float minTimeBetweenSpells;
     [SerializeField] private float maxTimeBetweenSpells;
@@ -37,11 +40,11 @@ public class VampireBossBehaviour_Spelling : StateMachineBehaviour
 
     }
 
-    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        Instantiate(soul, soulsSpawnPos, Quaternion.identity);
+        Instantiate(soul, soulsSpawnPos, Quaternion.identity);
+    }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

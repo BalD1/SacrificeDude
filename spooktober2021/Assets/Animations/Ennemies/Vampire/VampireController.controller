@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9eb69dfd56a8f34480d6fdabb712c29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soul: {fileID: 6192050438678724434, guid: ce9fb5bef258b5e47b1c9ae120a2a99b, type: 3}
+  soulsSpawnPos: {x: 0, y: 1}
   attackTime: 7
   minTimeBetweenSpells: 0.1
   maxTimeBetweenSpells: 0.1
@@ -208,7 +210,7 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer

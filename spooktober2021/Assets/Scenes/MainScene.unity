@@ -17323,6 +17323,7 @@ MonoBehaviour:
   shopMenu: {fileID: 1958534221}
   winScreen: {fileID: 1479359105}
   gameoverScreen: {fileID: 1155280495}
+  progressBar: {fileID: 0}
   playerSoulsCount: {fileID: 710274369}
   unselectedSpellTransparence: {r: 1, g: 1, b: 1, a: 0.3137255}
   spellImagesContainer: {fileID: 1524299738}
