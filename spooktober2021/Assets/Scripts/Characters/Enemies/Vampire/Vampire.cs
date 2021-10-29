@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Vampire : Enemy
 {
+    [Header("Vampire related")]
+    public List<Transform> spellPoints;
 
     private void Start()
     {
@@ -11,6 +13,8 @@ public class Vampire : Enemy
 
         if (target == null)
             target = GameManager.Instance.Player.transform;
+
+        GameManager.Instance.vampireBoss = this.root;
 
         canAttack = true;
         ai.maxSpeed = stats.speed;
@@ -22,19 +26,27 @@ public class Vampire : Enemy
     private void Update()
     {
         CallUpdate();
-        if (enemyState == EnemyStates.Attacking && canAttack)
-            Attack();
     }
 
-
-    private void Attack()
+    public void TeleportToCenter()
     {
+        Vector2 pos = new Vector2(0, 1);
+        this.transform.position = pos;
+    }
+
+    public void Attack()
+    {
+        enemyState = EnemyStates.Attacking;
         ai.enabled = false;
         canAttack = false;
         body.velocity = Vector2.zero;
+    }
 
-        audioSource.PlayOneShot(GetSFXByName("attack"));
-
+    public void StopAttack()
+    {
+        enemyState = EnemyStates.Moving;
+        ai.enabled = true;
+        canAttack = true;
     }
 
     private void OnTriggerStay2D(Collider2D collision)

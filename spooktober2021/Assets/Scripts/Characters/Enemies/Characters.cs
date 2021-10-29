@@ -126,6 +126,11 @@ public class Characters : MonoBehaviour
         return null;
     }
 
+    public CharactersScriptable.stats GetStats()
+    {
+        return this.stats;
+    }
+
     private IEnumerator Hit(float time)
     {
         yield return new WaitForSeconds(time);

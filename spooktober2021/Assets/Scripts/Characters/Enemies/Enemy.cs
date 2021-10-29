@@ -108,7 +108,7 @@ public class Enemy : Characters
     public void TakeMeleeAttack(float damages, int strength, Transform attackerTransform)
     {
         base.TakeDamages(damages);
-        if (!isStatic)
+        if (!isStatic && knockbackResistance < 100)
         {
             ai.enabled = false;
 

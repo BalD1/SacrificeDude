@@ -151,7 +151,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &6962765 stripped
 Transform:
@@ -750,7 +750,7 @@ GameObject:
   - component: {fileID: 126616598}
   - component: {fileID: 126616599}
   m_Layer: 0
-  m_Name: Wave (6)
+  m_Name: (7) [Everyone !]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1212,6 +1212,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 181114342}
   m_CullTransparentMesh: 0
+--- !u!1 &197502762
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 197502763}
+  - component: {fileID: 197502764}
+  m_Layer: 0
+  m_Name: (?) {Vampire boss}
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &197502763
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197502762}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1310355036}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &197502764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197502762}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4540d6a94126cd449ad3678e68c9780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveData:
+  - enemyName: vampire
+    enemy: {fileID: 8429686072224209156, guid: 19f5506f70dca884bb38ad2f2b343aab, type: 3}
+    point: {fileID: 491410072}
+    spawnEffect: {fileID: 4192035319921112393, guid: fcb7e1f22469a5a45bb7a3c28d6e79fc, type: 3}
 --- !u!1 &204257885
 GameObject:
   m_ObjectHideFlags: 0
@@ -1222,7 +1270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 204257886}
   - component: {fileID: 204257887}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Corner
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1410,6 +1458,7 @@ Transform:
   - {fileID: 2085600207}
   - {fileID: 436910151}
   - {fileID: 785194273}
+  - {fileID: 491410072}
   m_Father: {fileID: 1368103424}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7275,7 +7324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 412858790}
   - component: {fileID: 412858791}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Corner (1)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -7521,7 +7570,7 @@ GameObject:
   m_Component:
   - component: {fileID: 448726044}
   - component: {fileID: 448726045}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Pillar_01
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -7582,7 +7631,7 @@ GameObject:
   m_Component:
   - component: {fileID: 450332705}
   - component: {fileID: 450332706}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Corner
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -7738,7 +7787,7 @@ GameObject:
   m_Component:
   - component: {fileID: 463307673}
   - component: {fileID: 463307674}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: roof_oneborder (2)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -7820,7 +7869,7 @@ GameObject:
   m_Component:
   - component: {fileID: 470762189}
   - component: {fileID: 470762190}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: roof_oneborder (3)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -8039,6 +8088,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9115153533807749818, guid: 9e9f59a4bd2650d41822c8a91edf5a95, type: 3}
   m_PrefabInstance: {fileID: 9115153534138358474}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &491410071
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 491410072}
+  m_Layer: 0
+  m_Name: SpawnerPoint (14)
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &491410072
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491410071}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 234339791}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &495396581
 GameObject:
   m_ObjectHideFlags: 0
@@ -8815,7 +8894,7 @@ GameObject:
   - component: {fileID: 549682583}
   - component: {fileID: 549682584}
   m_Layer: 0
-  m_Name: Wave (5)
+  m_Name: (6) [Spooky scary skeletons]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9173,7 +9252,7 @@ GameObject:
   - component: {fileID: 584246230}
   - component: {fileID: 584246231}
   m_Layer: 0
-  m_Name: Wave (3)
+  m_Name: (4) [Bats and pumpkins ??]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10277,7 +10356,7 @@ GameObject:
   m_Component:
   - component: {fileID: 767980865}
   - component: {fileID: 767980866}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: roof_oneborder (2)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -10591,7 +10670,7 @@ GameObject:
   m_Component:
   - component: {fileID: 789893389}
   - component: {fileID: 789893390}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Corner (1)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -10786,7 +10865,7 @@ GameObject:
   m_Component:
   - component: {fileID: 833429447}
   - component: {fileID: 833429448}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: roof_oneborder (3)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -11042,7 +11121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAAAIIezIto2fUQIAAPUEAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VEtz2jAQ/iuMzqVjEh6ht9YQ0kMSJrSTiy9CWmMNsuTRIzwy/PeuZBu7dHpi+fbb3W8f8icRylbAnDYrI/iz5kC+DUiwyZdB53yCI91ptRFnaDnvgrsikGjkvFEnNOKjEGZ1Cc4I9l3tZCAnCHolcm3KJd9Bqq2zCOdUWkCX0S5EK4Q+B+SIP8N5CDmhdTcL1hmteTK4oMlAOTAdtSW2tJrlFZO0rIAHyR35vmXf1zSFzTSMIJxpKYVtlBB3qmKnKa2sxz6QwAXFzmL55OscgQLErnBBZz/8Nc8tuEaUoaeFMDiiOi/5oeu5ldTua2UfVPpQ6WE0v4uy6qzP/xCGo+jOjS6f2sKjJBRxhWD7N3pi1LreZPvwotM+ihM6ULmnWwnvBagXvTLaK45OZ3wI9RbuFt3fa29pAWzf4bXUG9BX/99P6OES2z+mUpTbOMpxDWykjiOP2weDy/mJguNt2CYFokHFbwu/6K5/RI3jURjr0NV0qYK8rfYmUMkyzix0412qjYIIN6IrUFS60xrTuNsd3vh6ZW88jzQ8l6Z442tfwU1IhDt+kty41vpwXZYt9OEZbPHqnRQKOtHB8YJzSrVS9Yn1Z9KGbbzJKeuF7bzgf58WmUzGM5iO+WQ62c7vH2C4zdlsPs05myQ0Z8mMxNsTCvukcl0LbcaDW1NdcoV31n5FBitDq3ju3NDDSpxL3Ru5ULneMAOgXusMV+FgsAg+TL7kAge0AeeEivsmnxmRmu2BZ9dEWex0eXSGZl2WjFTiQ7uAZCSNn42MXMjlD1BLAwQUAAAICAAACCHsKBGvyG0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNVRUEovSizIKAaKGII4pZkpIHa0kqmpiXmqmUmKqZlpkqWxRapuUlqyuaVZWkqyqUFiWrKBuVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAACCHsyLaNn1ECAAD1BAAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAACCHsKBGvyG0AAAB4AAAACQAkAAAAAAAAAAAAAACeAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAFYDAAAAAA==
+    dataString: UEsDBBQAAAgIAAAIIex6IrFtUwIAAPcEAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE1z2jAQ/SuMzk3GkACht9YhpAcSJqSTiy9CWmMNsuTRR4Aw/PeuZBu7dHpCvH27evt25RMRylbAnDYLI/hScyDfByScybdBF3yGA91qtRZf0HI+BHdFINHIeaNOaMSHIc3qEpwR7IfaykBOEPRK5NqUc76FVFtnEc6ptIAho13IVgidBuSAPzezkHLE02gaTl94miWDMx4ZKAemo7bEllazvGKSlhXwILkj37Xsu5qmsJmGkdyOQ3UtpbCNFuKOVew1pZX12AkSuKDYWxSQ3M4QKEBsCxeU9tNf89yCa2QZenwUBk2q65KfunaupHZXa/uk0oebHoazURRWV13+Q7gZxnBudPncXjxMwiWuEGz3Ro+MWtfztg8/dtqH0aM9lTu6kfBRgHrRC6O94hh0xodUb2H02P299JYWwHYdXku9An31/wmFHs6x/UMqRbmJVt7XwFrqaHmcPxgczy8UHLfDNiUQDSp+W3in2/4aNYEnYazDUNOlCvI22ptAJfPoWejGu1QbBRFuRFegqHTHFZZx1zO8ivWuvYo80fBgmsubWPsOrlIi3PGT5Cq00vvLsGyh90uwxat3UijoRIfAC/qUaqXqFet70qatvckp66VtveB/rxYZj++nMLnn48l4M7t7gJtNzqazSc7ZOKE5S6Yk7p5Q2CeVq1poYw9OTXXFFe5Z+x0ZLAyt4rpzQ/cL8VXqnuVC5XrNDIB6rStchIPBS/Bp8jkXaNAanBMqzpucMiI12wHPLoWy2On84AzNuioZqcSndgHJSBo/HBk5k/MfUEsDBBQAAAgIAAAIIewoEa/IbQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM01VFQSi9KLMgoBooYgjilmSkgdrSSqamJeaqZSYqpmWmSpbFFqm5SWrK5pVlaSrKpQWJasoG5UixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAAAIIex6IrFtUwIAAPcEAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAAAIIewoEa/IbQAAAHgAAAAJACQAAAAAAAAAAAAAAKACAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAWAMAAAAA
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -11495,7 +11574,7 @@ GameObject:
   m_Component:
   - component: {fileID: 905863013}
   - component: {fileID: 905863014}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Pillar_03
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -11510,7 +11589,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 905863012}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: 9.5, z: 0}
+  m_LocalPosition: {x: 10, y: 9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 204257886}
@@ -11632,7 +11711,7 @@ GameObject:
   - component: {fileID: 912706318}
   - component: {fileID: 912706319}
   m_Layer: 0
-  m_Name: Wave (1)
+  m_Name: (2) [More bats !]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12415,7 +12494,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1048659288}
   - component: {fileID: 1048659289}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: roof_oneborder (2)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -13278,7 +13357,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1139623124}
   - component: {fileID: 1139623125}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: roof_oneborder (3)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -13621,7 +13700,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1208338535}
   - component: {fileID: 1208338536}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Corner (1)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -14654,6 +14733,7 @@ Transform:
   - {fileID: 1568094617}
   - {fileID: 549682583}
   - {fileID: 126616598}
+  - {fileID: 197502763}
   m_Father: {fileID: 1368103424}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15072,7 +15152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawns:
-  - {fileID: 1717150831}
+  - {fileID: 197502764}
   - {fileID: 912706319}
   - {fileID: 1538522444}
   - {fileID: 584246231}
@@ -15458,7 +15538,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1400132827}
   - component: {fileID: 1400132828}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Pillar_02
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -16066,7 +16146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1470766738}
   - component: {fileID: 1470766739}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: roof_oneborder (3)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -16858,7 +16938,7 @@ GameObject:
   - component: {fileID: 1538522443}
   - component: {fileID: 1538522444}
   m_Layer: 0
-  m_Name: Wave (2)
+  m_Name: (3) [Pumpkins ?]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17434,7 +17514,7 @@ GameObject:
   - component: {fileID: 1568094617}
   - component: {fileID: 1568094618}
   m_Layer: 0
-  m_Name: Wave (4)
+  m_Name: (5) [More bats and pumpkins !]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18005,7 +18085,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1679738496}
   - component: {fileID: 1679738497}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: roof_oneborder (2)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -18121,6 +18201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1092299490}
+  vampireBoss: {fileID: 0}
   gameState: 0
 --- !u!1 &1695995757
 GameObject:
@@ -18411,7 +18492,7 @@ GameObject:
   - component: {fileID: 1717150830}
   - component: {fileID: 1717150831}
   m_Layer: 0
-  m_Name: Wave
+  m_Name: (1) [The two bats]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18606,7 +18687,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1735806995}
   - component: {fileID: 1735806996}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Pillar_04
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -18621,7 +18702,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1735806994}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 9.5, z: 0}
+  m_LocalPosition: {x: 0, y: 9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2020079524}
@@ -19174,7 +19255,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1845631265}
   - component: {fileID: 1845631266}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Corner
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -20110,7 +20191,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1946651993}
   - component: {fileID: 1946651994}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Corner (1)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -20792,7 +20873,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2020079524}
   - component: {fileID: 2020079525}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Corner
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -21664,7 +21745,7 @@ PrefabInstance:
       objectReference: {fileID: 4192035319921112393, guid: fcb7e1f22469a5a45bb7a3c28d6e79fc, type: 3}
     - target: {fileID: 98863344785169418, guid: 880c00dc694f0de4f9d1214e1200c1d8, type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 98863344785169418, guid: 880c00dc694f0de4f9d1214e1200c1d8, type: 3}
       propertyPath: m_LocalPosition.x

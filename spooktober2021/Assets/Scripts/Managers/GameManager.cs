@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject player;
     public GameObject Player => player;
 
+    public GameObject vampireBoss;
+
     #region instances
     private static GameManager instance;
     public static GameManager Instance
