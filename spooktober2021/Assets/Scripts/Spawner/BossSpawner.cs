@@ -28,10 +28,10 @@ public class BossSpawner : MonoBehaviour
         GameManager.Instance.IsInWave = true;
 
         GameManager.Instance.GameState = GameManager.GameStates.InGame;
+        enemy.enabled = true;
 
         yield return new WaitForSeconds(1);
 
-        enemy.enabled = true;
         enemy.SetCanMove(true);
     }
 }

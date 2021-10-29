@@ -21,6 +21,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject winScreen;
     [SerializeField] private GameObject gameoverScreen;
 
+    [SerializeField] private Image progressBar;
+
     [Header("Player related")]
     [SerializeField] private TextMeshProUGUI playerSoulsCount;
     [SerializeField] private Color unselectedSpellTransparence;
@@ -74,7 +76,9 @@ public class UIManager : MonoBehaviour
             case GameManager.GameStates.InGame:
                 if (pauseMenu != null)
                     pauseMenu.SetActive(false);
-                BlackBarsAnimator.SetTrigger("disappear");
+
+                if (blackBars != null)
+                    BlackBarsAnimator.SetTrigger("disappear");
                 break;
 
             case GameManager.GameStates.Pause:
@@ -167,6 +171,11 @@ public class UIManager : MonoBehaviour
     public void EndWave()
     {
         nextWaveText.SetActive(true);
+    }
+
+    public void UpdateProgressBar(float val)
+    {
+        progressBar.fillAmount = val;
     }
 
 }

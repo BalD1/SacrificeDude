@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterStats:
     name: Player
-    maxHP: 10
-    currentHP: 10
+    maxHP: 15
+    currentHP: 15
     speed: 5
     damages: 1
     invincibleTime: 0.5

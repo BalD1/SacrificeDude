@@ -5834,6 +5834,7 @@ MonoBehaviour:
     speed: 0
     damages: 0
     invincibleTime: 0
+  isPlayer: 0
   animator: {fileID: 8429686072224209152}
   body: {fileID: 8429686071451045623}
   sprite: {fileID: 8429686070456898576}
@@ -5842,13 +5843,13 @@ MonoBehaviour:
   audioSource: {fileID: 5098973202748001229}
   sounds:
   - name: hit
-    clip: {fileID: 8300000, guid: a1abf500db9a5ef438c103c376ec14e8, type: 3}
+    clip: {fileID: 8300000, guid: 86820820f366ebb4c9bdeb1f6abc4a64, type: 3}
   - name: death
-    clip: {fileID: 8300000, guid: 40783eaf982121149b8d93362183cb43, type: 3}
+    clip: {fileID: 8300000, guid: 86820820f366ebb4c9bdeb1f6abc4a64, type: 3}
   root: {fileID: 8429686072224209156}
   target: {fileID: 0}
   HUD: {fileID: 8429686071752871541}
-  HUDoffset: {x: 0, y: 1, z: 0}
+  HUDoffset: {x: 0, y: 0, z: 0}
   stopDistance: 0
   ai: {fileID: 8453333360086887139}
   AIdestinationSetter: {fileID: 8453333360086887140}

@@ -514,6 +514,7 @@ MonoBehaviour:
     speed: 0
     damages: 0
     invincibleTime: 0
+  isPlayer: 0
   animator: {fileID: 7113556415510205639}
   body: {fileID: 7113556415074091824}
   sprite: {fileID: 7113556414088403415}
@@ -522,7 +523,7 @@ MonoBehaviour:
   audioSource: {fileID: 3911423872118752645}
   sounds:
   - name: hit
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 8149c6febc0cbba429fcf57a21cc2c23, type: 3}
   - name: death
     clip: {fileID: 8300000, guid: 2057a86075fc873429e6169dc1f4294f, type: 3}
   - name: attack

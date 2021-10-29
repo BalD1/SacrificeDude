@@ -268,4 +268,5 @@ public class Player : Characters
 
         Gizmos.DrawWireSphere(meleePoint.position, attackRange); 
     }
+
 }

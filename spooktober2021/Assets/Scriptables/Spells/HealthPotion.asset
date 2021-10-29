@@ -9,13 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4499d3b34c97584a81e68c8c8639c79, type: 3}
-  m_Name: Vampire
+  m_Script: {fileID: 11500000, guid: 515cee14b7c4b774fa8b47ffc5756046, type: 3}
+  m_Name: HealthPotion
   m_EditorClassIdentifier: 
-  CharacterStats:
-    name: Vampire
-    maxHP: 30
-    currentHP: 30
-    speed: 3
-    damages: 3
-    invincibleTime: 0.2
+  SpellStats:
+    name: HealthPotion
+    damages: 0
+    speed: 0
+    pvCost: 0
+    soulCost: 3
+    cooldown: 0.3
+    UIimage: {fileID: 21300000, guid: 2a4fefe75542fa94f8966c989b3e3588, type: 3}

@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
                 case GameStates.InGame:
                     Time.timeScale = 1;
                     if (GetActiveSceneName().Equals("MainMenu"))
-                        LoadScene("MainScene");
+                        LoadSceneAsync("MainScene");
                     break;
 
                 case GameStates.Pause:
@@ -148,6 +148,22 @@ public class GameManager : MonoBehaviour
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+    }
+    public void LoadSceneAsync(string sceneName)
+    {
+        StartCoroutine(LoadAsynch(sceneName));
+    }
+    private IEnumerator LoadAsynch(string sceneName)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+
+        while (!operation.isDone)
+        {
+            float progress = Mathf.Clamp01(operation.progress / 0.9f);
+            UIManager.Instance.UpdateProgressBar(progress);
+
+            yield return null;
+        }
     }
     public float GetAnimationLength(Animator animator, string searchedAnimation)
     {
