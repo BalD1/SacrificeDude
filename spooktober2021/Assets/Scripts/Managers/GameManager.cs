@@ -158,6 +158,9 @@ public class GameManager : MonoBehaviour
                     GameState = GameStates.InGame;
 
             }
+            else if (GameState == GameStates.MainMenu)
+                if (UIManager.Instance.OptionsMenu.activeSelf)
+                    UIManager.Instance.OptionsMenu.SetActive(false);
         }
     }
 }
