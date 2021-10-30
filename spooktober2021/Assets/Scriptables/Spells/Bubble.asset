@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpellStats:
     name: Bubble
-    damages: 2
+    damages: 3
     speed: 3
-    pvCost: 2
+    pvCost: 3
     soulCost: 10
     cooldown: 1
     UIimage: {fileID: 21300000, guid: 6e57d6ec7f4849840be7558e986dd488, type: 3}

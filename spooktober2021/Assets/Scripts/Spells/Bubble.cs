@@ -25,12 +25,13 @@ public class Bubble : Spells
     {
         if (collision.CompareTag("Enemy"))
         {
+            audioSource.PlayOneShot(GetSFXByName("hit"));
             collision.GetComponentInParent<Enemy>().TakeDamages(stats.damages);
         }
 
         if (collision.CompareTag("Wall"))
         {
-            audioSource.PlayOneShot(GetSFXByName("hit"));
+            audioSource.PlayOneShot(GetSFXByName("death"));
             audioSource.GetComponent<DelayedDestroy>().enabled = true;
             audioSource.transform.parent = null;
             Destroy(this.gameObject);

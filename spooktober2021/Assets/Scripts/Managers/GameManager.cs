@@ -15,6 +15,12 @@ public class GameManager : MonoBehaviour
 
     public bool lastWave;
 
+    public delegate void HideHUDs();
+    public HideHUDs hideHUDs;
+
+    public delegate void ShowHUDs();
+    public ShowHUDs showHUDs;
+
     #region instances
     private static GameManager instance;
     public static GameManager Instance
@@ -75,29 +81,31 @@ public class GameManager : MonoBehaviour
                     break;
 
                 case GameStates.InCinematic:
-                    Vector3 camPos = mainCam.transform.position;
-                    camPos.x = 0;
-                    camPos.y = 0;
-                    mainCam.transform.position = camPos;
                     Time.timeScale = 1;
                     break;
 
                 case GameStates.InGame:
                     Time.timeScale = 1;
-                    Cursor.SetCursor(cursorInGame, Vector2.zero, CursorMode.Auto);
+                    Cursor.SetCursor(cursorInGame, new Vector2(cursorInGame.width / 2, cursorInGame.height / 2), CursorMode.ForceSoftware);
                     if (GetActiveSceneName().Equals("MainMenu"))
                         LoadSceneAsync("MainScene");
+                    showHUDs?.Invoke();
                     break;
 
                 case GameStates.Pause:
+                    Cursor.SetCursor(cursorMainMenu, Vector2.zero, CursorMode.Auto);
                     Time.timeScale = 0;
+                    hideHUDs?.Invoke();
                     break;
 
                 case GameStates.Gameover:
+                    Cursor.SetCursor(cursorMainMenu, Vector2.zero, CursorMode.Auto);
                     Time.timeScale = 0;
+                    hideHUDs?.Invoke();
                     break;
 
                 case GameStates.Win:
+                    Cursor.SetCursor(cursorMainMenu, Vector2.zero, CursorMode.Auto);
                     Time.timeScale = 0;
                     break;
 
@@ -115,9 +123,6 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-
-        Debug.Log("cc la mif");
-
         Cursor.lockState = CursorLockMode.Confined;
 
         if (mainCam == null)
@@ -192,9 +197,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-            Debug.Log("on est là");
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (GameState == GameStates.InGame)
@@ -207,9 +209,14 @@ public class GameManager : MonoBehaviour
                     GameState = GameStates.InGame;
 
             }
-            else if (GameState == GameStates.MainMenu)
-                if (UIManager.Instance.OptionsMenu.activeSelf)
-                    UIManager.Instance.OptionsMenu.SetActive(false);
         }
+    }
+
+    public void SetMainCameraPosition(Vector2 pos)
+    {
+        Vector3 camPos = mainCam.transform.position;
+        camPos.x = pos.x;
+        camPos.y = pos.y;
+        mainCam.transform.position = camPos;
     }
 }

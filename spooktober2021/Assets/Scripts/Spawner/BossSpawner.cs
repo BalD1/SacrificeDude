@@ -10,6 +10,7 @@ public class BossSpawner : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.GameState = GameManager.GameStates.InCinematic;
+        GameManager.Instance.SetMainCameraPosition(Vector2.zero);
         StartCoroutine(WaitForCinematic(3));
     }
 

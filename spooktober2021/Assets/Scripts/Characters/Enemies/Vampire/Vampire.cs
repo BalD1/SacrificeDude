@@ -7,9 +7,12 @@ public class Vampire : Enemy
     [Header("Vampire related")]
     public List<Transform> spellPoints;
 
+    [SerializeField] private VampireDeath deathScript;
+
     private void Start()
     {
         CallStart();
+        HUD.SetActive(true);
 
         if (target == null)
             target = GameManager.Instance.Player.transform;
@@ -19,13 +22,23 @@ public class Vampire : Enemy
         canAttack = true;
         ai.maxSpeed = stats.speed;
         ai.endReachedDistance = stopDistance;
-        _Death += OnDeathEvent;
+        _Death += OnDeath;
         EnemyState = EnemyStates.Moving;
+
+        GameManager.Instance.showHUDs += ShowHUD;
+        GameManager.Instance.hideHUDs += HideHUD;
+
+        StartCoroutine(WaitForAttack(1));
     }
 
     private void Update()
     {
         CallUpdate();
+
+        if (HUD.activeSelf && (GameManager.Instance.GameState == GameManager.GameStates.Pause || GameManager.Instance.GameState == GameManager.GameStates.Gameover))
+            HUD.SetActive(false);
+        else if (GameManager.Instance.GameState == GameManager.GameStates.InGame)
+            HUD.SetActive(true);
     }
 
     public void TeleportToCenter()
@@ -49,6 +62,16 @@ public class Vampire : Enemy
         canAttack = true;
     }
 
+    private void OnDeath()
+    {
+        HUD.SetActive(false);
+        animator.enabled = false;
+        ai.enabled = false;
+        AIdestinationSetter.enabled = false;
+        deathScript.enabled = true;
+        this.enabled = false;
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -60,5 +83,14 @@ public class Vampire : Enemy
         yield return new WaitForSeconds(time);
         canAttack = true;
         ai.enabled = true;
+    }
+
+    private void ShowHUD()
+    {
+        HUD.SetActive(true);
+    }
+    private void HideHUD()
+    {
+        HUD.SetActive(false);
     }
 }

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterStats:
     name: Vampire
-    maxHP: 30
-    currentHP: 30
+    maxHP: 40
+    currentHP: 40
     speed: 3
     damages: 3
     invincibleTime: 0.2

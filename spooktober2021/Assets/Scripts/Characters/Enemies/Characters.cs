@@ -17,6 +17,7 @@ public class Characters : MonoBehaviour
     [SerializeField] protected SpriteRenderer sprite;
     [SerializeField] protected Image hpBar;
     [SerializeField] private Material hitMaterial;
+    [SerializeField] protected bool destroyOnDeath = true;
     private Material baseMaterial;
 
     [Header("Audio")]
@@ -109,7 +110,9 @@ public class Characters : MonoBehaviour
                 audioSource.PlayOneShot(GetSFXByName("death"));
                 audioSource.GetComponent<DelayedDestroy>().enabled = true;
                 audioSource.transform.parent = null;
-                Destroy(this.gameObject);
+
+                if (destroyOnDeath)
+                    Destroy(this.gameObject);
             }
 
             _Death();

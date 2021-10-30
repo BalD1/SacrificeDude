@@ -68,7 +68,7 @@ public class Player : Characters
         {
             ProcessInputs();
             CameraFollow();
-            ChangeSpellOnScroll();
+            ChangeSpell();
 
 
             if (meleeAttackTimer > 0)
@@ -198,7 +198,7 @@ public class Player : Characters
 
     #region Spells
 
-    private void ChangeSpellOnScroll()
+    private void ChangeSpell()
     {
         if (unlockedSpells.Count != 0)
         {

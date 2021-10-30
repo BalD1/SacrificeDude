@@ -9,7 +9,7 @@ public class Enemy : Characters
 
     [SerializeField] protected GameObject root;
     [SerializeField] protected Transform target;
-    [SerializeField] private GameObject HUD;
+    [SerializeField] protected GameObject HUD;
     [SerializeField] private Vector3 HUDoffset;
     [SerializeField] protected float stopDistance;
     [SerializeField] protected AIPath ai;
@@ -107,7 +107,9 @@ public class Enemy : Characters
         Soul droppedSoul = Instantiate(soul, this.transform.position, Quaternion.identity).GetComponent<Soul>();
         droppedSoul.SetSoul(healAmount, soulScale);
         GameManager.Instance.CurrentEnemiesNumber--;
-        Destroy(root);
+
+        if (destroyOnDeath)
+            Destroy(root);
     }
 
     public void TakeMeleeAttack(float damages, int strength, Transform attackerTransform)

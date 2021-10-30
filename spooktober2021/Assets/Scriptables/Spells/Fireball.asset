@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpellStats:
     name: Fireball
-    damages: 2
+    damages: 3
     speed: 7
     pvCost: 1
     soulCost: 0

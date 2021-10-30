@@ -23,6 +23,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private Image progressBar;
 
+    private bool shopMenuWasActive;
+
     [Header("Player related")]
     [SerializeField] private TextMeshProUGUI playerSoulsCount;
     [SerializeField] private Color unselectedSpellTransparence;
@@ -74,8 +76,19 @@ public class UIManager : MonoBehaviour
                 break;
 
             case GameManager.GameStates.InGame:
+                if (HUD != null)
+                    HUD.SetActive(true);
                 if (pauseMenu != null)
                     pauseMenu.SetActive(false);
+
+                if (shopMenuWasActive)
+                {
+                    shopMenu.SetActive(true);
+                    shopMenuWasActive = false;
+                }
+
+                if (!GameManager.Instance.IsInWave && nextWaveText != null)
+                    nextWaveText.SetActive(true);
 
                 if (blackBars != null)
                     BlackBarsAnimator.SetTrigger("disappear");
@@ -84,6 +97,12 @@ public class UIManager : MonoBehaviour
 
             case GameManager.GameStates.Pause:
                 pauseMenu.SetActive(true);
+                if (shopMenu.activeSelf)
+                {
+                    shopMenu.SetActive(false);
+                    shopMenuWasActive = true;
+                }
+                HUD.SetActive(false);
                 nextWaveText.SetActive(false);
                 break;
 
@@ -94,6 +113,7 @@ public class UIManager : MonoBehaviour
                 break;
 
             case GameManager.GameStates.Win:
+                blackBars.SetActive(false);
                 winScreen.SetActive(true);
                 HUD.SetActive(false);
                 break;
