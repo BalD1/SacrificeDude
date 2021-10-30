@@ -248,6 +248,14 @@ public class Player : Characters
         }
     }
 
+    public void PaySouls(int amount)
+    {
+        if (amount < 0)
+            amount *= -1;
+
+        SoulsCount -= amount;
+    }
+
     #endregion
 
     private void OnDeathEvent()

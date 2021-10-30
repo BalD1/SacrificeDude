@@ -195,6 +195,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -522,6 +523,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &3464635935189769933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -595,11 +597,13 @@ MonoBehaviour:
     speed: 0
     damages: 0
     invincibleTime: 0
+  isPlayer: 0
   animator: {fileID: 3464635935123179962}
   body: {fileID: 3464635935491923533}
   sprite: {fileID: 3464635934472733866}
   hpBar: {fileID: 3464635934278299732}
   hitMaterial: {fileID: 2100000, guid: 971fe15a9e2039f42abdd6909d64e53f, type: 2}
+  destroyOnDeath: 1
   audioSource: {fileID: 156411902630468471}
   sounds:
   - name: hit
@@ -621,8 +625,8 @@ MonoBehaviour:
   isStatic: 0
   flipOnlySprite: 0
   soul: {fileID: 6192050438678724434, guid: ce9fb5bef258b5e47b1c9ae120a2a99b, type: 3}
-  soulScale: {x: 1, y: 1}
-  healAmount: 1
+  soulScale: {x: 1.5, y: 1.5}
+  healAmount: 1.5
   eventsHandler: {fileID: 3464635935123179965}
   attackPoint: {fileID: 7728502499837507928}
   attackRange: 1

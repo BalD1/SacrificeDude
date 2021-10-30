@@ -17,5 +17,5 @@ MonoBehaviour:
     maxHP: 40
     currentHP: 40
     speed: 3
-    damages: 3
+    damages: 2.5
     invincibleTime: 0.2
