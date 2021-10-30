@@ -128,9 +128,6 @@ public class GameManager : MonoBehaviour
         if (mainCam == null)
             mainCam = Camera.main;
 
-        if (player == null)
-            player = GameObject.FindGameObjectWithTag("Player");
-
         if (GetActiveSceneName().Equals("MainScene"))
         {
             GameState = GameStates.InGame;
@@ -139,6 +136,12 @@ public class GameManager : MonoBehaviour
         else if (GetActiveSceneName().Equals("MainMenu"))
             GameState = GameStates.MainMenu;
 
+    }
+
+    private void Start()
+    {
+        if (player == null)
+            player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private int currentEnemiesNumber;

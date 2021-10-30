@@ -15927,6 +15927,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1479359105}
   m_CullTransparentMesh: 0
+--- !u!1 &1480347489 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 98863344785169419, guid: 880c00dc694f0de4f9d1214e1200c1d8, type: 3}
+  m_PrefabInstance: {fileID: 6024514632465824550}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1480801179
 GameObject:
   m_ObjectHideFlags: 0
@@ -18012,7 +18017,7 @@ MonoBehaviour:
   cursorMainMenu: {fileID: 2800000, guid: 46d0db099d5cce74cb8278c579a5d632, type: 3}
   cursorInGame: {fileID: 2800000, guid: 1eca3f4ea880faa429427cd658bb06bb, type: 3}
   mainCam: {fileID: 593062217}
-  player: {fileID: 0}
+  player: {fileID: 1480347489}
   vampireBoss: {fileID: 0}
   lastWave: 0
   gameState: 0

@@ -26,7 +26,7 @@ public class Vampire : Enemy
         EnemyState = EnemyStates.Moving;
 
         GameManager.Instance.showHUDs += ShowHUD;
-        GameManager.Instance.hideHUDs += HideHUD;
+        GameManager.Instance.showHUDs += ShowHUD;
 
         StartCoroutine(WaitForAttack(1));
     }
@@ -34,11 +34,6 @@ public class Vampire : Enemy
     private void Update()
     {
         CallUpdate();
-
-        if (HUD.activeSelf && (GameManager.Instance.GameState == GameManager.GameStates.Pause || GameManager.Instance.GameState == GameManager.GameStates.Gameover))
-            HUD.SetActive(false);
-        else if (GameManager.Instance.GameState == GameManager.GameStates.InGame)
-            HUD.SetActive(true);
     }
 
     public void TeleportToCenter()
