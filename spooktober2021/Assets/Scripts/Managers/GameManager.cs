@@ -116,6 +116,8 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
 
+        Debug.Log("cc la mif");
+
         Cursor.lockState = CursorLockMode.Confined;
 
         if (mainCam == null)
@@ -190,6 +192,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+            Debug.Log("on est là");
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (GameState == GameStates.InGame)
