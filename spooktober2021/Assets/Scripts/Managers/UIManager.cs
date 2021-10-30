@@ -79,6 +79,7 @@ public class UIManager : MonoBehaviour
 
                 if (blackBars != null)
                     BlackBarsAnimator.SetTrigger("disappear");
+
                 break;
 
             case GameManager.GameStates.Pause:

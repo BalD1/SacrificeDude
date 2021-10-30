@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private Texture2D cursorMainMenu;
+    [SerializeField] private Texture2D cursorInGame;
     [SerializeField] private Camera mainCam;
     [SerializeField] private GameObject player;
     public GameObject Player => player;
@@ -66,6 +68,7 @@ public class GameManager : MonoBehaviour
             {
                 case GameStates.MainMenu:
                     Time.timeScale = 1;
+                    Cursor.SetCursor(cursorMainMenu, Vector2.zero, CursorMode.Auto);
                     if (GetActiveSceneName().Equals("MainScene"))
                         LoadScene("MainMenu");
 
@@ -81,6 +84,7 @@ public class GameManager : MonoBehaviour
 
                 case GameStates.InGame:
                     Time.timeScale = 1;
+                    Cursor.SetCursor(cursorInGame, Vector2.zero, CursorMode.Auto);
                     if (GetActiveSceneName().Equals("MainMenu"))
                         LoadSceneAsync("MainScene");
                     break;
@@ -111,6 +115,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+
+        Cursor.lockState = CursorLockMode.Confined;
 
         if (mainCam == null)
             mainCam = Camera.main;

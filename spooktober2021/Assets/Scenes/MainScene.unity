@@ -18886,6 +18886,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28c937abafce54940bfe12e780ca0ba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursorMainMenu: {fileID: 2800000, guid: 46d0db099d5cce74cb8278c579a5d632, type: 3}
+  cursorInGame: {fileID: 2800000, guid: 62e70cdcd206f704ab79b7df4875d2e3, type: 3}
   mainCam: {fileID: 593062217}
   player: {fileID: 1092299490}
   vampireBoss: {fileID: 0}
@@ -22609,10 +22611,6 @@ PrefabInstance:
       propertyPath: hpBar
       value: 
       objectReference: {fileID: 1400890427}
-    - target: {fileID: 98863344785169413, guid: 880c00dc694f0de4f9d1214e1200c1d8, type: 3}
-      propertyPath: cantLose
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 98863344785169418, guid: 880c00dc694f0de4f9d1214e1200c1d8, type: 3}
       propertyPath: m_RootOrder
       value: 17
