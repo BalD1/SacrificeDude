@@ -349,7 +349,7 @@ MonoBehaviour:
     m_Bits: 1024
   cantLose: 0
   meleePoint: {fileID: 4658417213980712486}
-  meleeAttackCooldown: 0.3
+  meleeAttackCooldown: 0.4
   attackRange: 0.5
   meleeDamages: 1.5
   knockbackStrength: 10

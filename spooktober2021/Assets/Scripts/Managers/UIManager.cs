@@ -16,6 +16,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject blackBars;
     public GameObject BlackBars { get => blackBars; }
     public Animator BlackBarsAnimator { get => blackBars.GetComponent<Animator>(); }
+
+    [SerializeField] private GameObject soulsImage;
+
+    [SerializeField] private GameObject minimap;
+
     [SerializeField] private GameObject shopMenu;
 
     [SerializeField] private GameObject winScreen;
@@ -80,6 +85,10 @@ public class UIManager : MonoBehaviour
                     HUD.SetActive(true);
                 if (pauseMenu != null)
                     pauseMenu.SetActive(false);
+                if (soulsImage != null)
+                    soulsImage.SetActive(true);
+                if (minimap != null)
+                    minimap.SetActive(true);
 
                 if (shopMenuWasActive)
                 {
@@ -97,6 +106,8 @@ public class UIManager : MonoBehaviour
 
             case GameManager.GameStates.Pause:
                 pauseMenu.SetActive(true);
+                minimap.SetActive(false);
+                soulsImage.SetActive(false);
                 if (shopMenu.activeSelf)
                 {
                     shopMenu.SetActive(false);
@@ -107,15 +118,19 @@ public class UIManager : MonoBehaviour
                 break;
 
             case GameManager.GameStates.Gameover:
+                minimap.SetActive(false);
                 gameoverScreen.SetActive(true);
                 HUD.SetActive(false);
                 nextWaveText.SetActive(false);
+                soulsImage.SetActive(false);
                 break;
 
             case GameManager.GameStates.Win:
+                minimap.SetActive(false);
                 blackBars.SetActive(false);
                 winScreen.SetActive(true);
                 HUD.SetActive(false);
+                soulsImage.SetActive(false);
                 break;
 
             default:
