@@ -9,6 +9,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Texture2D cursorInGame;
     [SerializeField] private Camera mainCam;
     [SerializeField] private GameObject player;
+
+    [SerializeField] private Transform damagePopup;
+    public Transform DamagePopup { get => damagePopup; }
+
     public GameObject Player => player;
 
     public GameObject vampireBoss;

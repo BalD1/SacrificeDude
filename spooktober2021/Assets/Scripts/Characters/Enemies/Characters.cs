@@ -67,6 +67,9 @@ public class Characters : MonoBehaviour
             return;
         isInvincible = true;
 
+        if (!isPlayer)
+            DamagePopup.Create(this.transform.position, amount);
+
         if (amount < 0)
             amount *= -1;
         this.stats.currentHP -= amount;

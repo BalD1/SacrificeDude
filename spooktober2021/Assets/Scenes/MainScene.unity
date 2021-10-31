@@ -23301,6 +23301,7 @@ MonoBehaviour:
   cursorInGame: {fileID: 2800000, guid: 1eca3f4ea880faa429427cd658bb06bb, type: 3}
   mainCam: {fileID: 593062217}
   player: {fileID: 1480347489}
+  damagePopup: {fileID: 5228028594276771587, guid: 941ca4bbbca6c894b87a8b40481697bf, type: 3}
   vampireBoss: {fileID: 0}
   lastWave: 0
   gameState: 0
@@ -27319,14 +27320,6 @@ PrefabInstance:
     - target: {fileID: 2580049694820500855, guid: 980d7355825cf7147866f33945d40101, type: 3}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2580049694820500855, guid: 980d7355825cf7147866f33945d40101, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 2580049694820500855, guid: 980d7355825cf7147866f33945d40101, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2580049694820500855, guid: 980d7355825cf7147866f33945d40101, type: 3}
       propertyPath: m_LocalPosition.x
